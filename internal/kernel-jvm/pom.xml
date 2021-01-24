@@ -8,7 +8,7 @@
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 
-	<groupId>fr.unice.polytech.idm.arduinoml</groupId>
+	<groupId>fr.unice.polytech.groupB.arduinoml</groupId>
 	<artifactId>kernel-jvm</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
