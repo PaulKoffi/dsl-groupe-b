@@ -1,4 +1,4 @@
-package fr.unice.polytech.idm.arduinoml.kernel.structural;
+package fr.unice.polytech.groupB.arduinoml.kernel.structural;
 
 import fr.unice.polytech.groupB.arduinoml.kernel.generator.Visitor;
 

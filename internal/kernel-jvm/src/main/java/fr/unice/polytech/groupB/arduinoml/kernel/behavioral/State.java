@@ -1,4 +1,4 @@
-package fr.unice.polytech.idm.arduinoml.kernel.behavioral;
+package fr.unice.polytech.groupB.arduinoml.kernel.behavioral;
 
 import java.util.ArrayList;
 import java.util.List;

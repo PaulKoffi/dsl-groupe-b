@@ -1,1 +1,1 @@
-package fr.unice.polytech.idm.arduinoml.kernel;
+package fr.unice.polytech.groupB.arduinoml.kernel;
