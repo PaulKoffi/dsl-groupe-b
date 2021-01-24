@@ -1,12 +1,12 @@
-package fr.unice.polytech.idm.arduinoml.kernel;
+package fr.unice.polytech.groupB.arduinoml.kernel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.unice.polytech.idm.arduinoml.kernel.behavioral.State;
-import fr.unice.polytech.idm.arduinoml.kernel.generator.Visitable;
-import fr.unice.polytech.idm.arduinoml.kernel.generator.Visitor;
-import fr.unice.polytech.idm.arduinoml.kernel.structural.Brick;
+import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.State;
+import fr.unice.polytech.groupB.arduinoml.kernel.generator.Visitable;
+import fr.unice.polytech.groupB.arduinoml.kernel.generator.Visitor;
+import fr.unice.polytech.groupB.arduinoml.kernel.structural.Brick;
 
 public class App implements NamedElement, Visitable {
 

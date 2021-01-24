@@ -1,17 +1,17 @@
-package fr.unice.polytech.idm.arduinoml.dsl;
+package fr.unice.polytech.groupB.arduinoml.dsl;
 
 import java.util.*;
 
-import fr.unice.polytech.idm.arduinoml.kernel.App;
-import fr.unice.polytech.idm.arduinoml.kernel.behavioral.Action;
-import fr.unice.polytech.idm.arduinoml.kernel.behavioral.State;
-import fr.unice.polytech.idm.arduinoml.kernel.behavioral.Transition;
-import fr.unice.polytech.idm.arduinoml.kernel.generator.ToWiring;
-import fr.unice.polytech.idm.arduinoml.kernel.generator.Visitor;
-import fr.unice.polytech.idm.arduinoml.kernel.structural.Actuator;
-import fr.unice.polytech.idm.arduinoml.kernel.structural.Brick;
-import fr.unice.polytech.idm.arduinoml.kernel.structural.SIGNAL;
-import fr.unice.polytech.idm.arduinoml.kernel.structural.Sensor;
+import fr.unice.polytech.groupB.arduinoml.kernel.App;
+import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.Action;
+import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.State;
+import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.Transition;
+import fr.unice.polytech.groupB.arduinoml.kernel.generator.ToWiring;
+import fr.unice.polytech.groupB.arduinoml.kernel.generator.Visitor;
+import fr.unice.polytech.groupB.arduinoml.kernel.structural.Actuator;
+import fr.unice.polytech.groupB.arduinoml.kernel.structural.Brick;
+import fr.unice.polytech.groupB.arduinoml.kernel.structural.SIGNAL;
+import fr.unice.polytech.groupB.arduinoml.kernel.structural.Sensor;
 import groovy.lang.Binding;
 
 public class ArduinoMLModel {

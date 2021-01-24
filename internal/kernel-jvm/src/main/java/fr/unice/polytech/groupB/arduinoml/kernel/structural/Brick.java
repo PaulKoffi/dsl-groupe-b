@@ -1,7 +1,7 @@
 package fr.unice.polytech.idm.arduinoml.kernel.structural;
 
-import fr.unice.polytech.idm.arduinoml.kernel.NamedElement;
-import fr.unice.polytech.idm.arduinoml.kernel.generator.Visitable;
+import fr.unice.polytech.groupB.arduinoml.kernel.NamedElement;
+import fr.unice.polytech.groupB.arduinoml.kernel.generator.Visitable;
 
 public abstract class Brick implements NamedElement, Visitable {
 

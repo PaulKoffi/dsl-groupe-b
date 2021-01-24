@@ -1,7 +1,7 @@
-package fr.unice.polytech.idm.arduinoml.dsl
+package fr.unice.polytech.groupB.arduinoml.dsl
 
-import fr.unice.polytech.idm.arduinoml.kernel.behavioral.Action
-import fr.unice.polytech.idm.arduinoml.kernel.behavioral.State
+import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.Action
+import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.State
 
 
 abstract class ArduinoMLBasescript extends Script {

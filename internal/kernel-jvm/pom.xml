@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>fr.unice.polytech.idm</groupId>
+		<groupId>fr.unice.polytech.groupB</groupId>
 		<artifactId>arduinoml</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>

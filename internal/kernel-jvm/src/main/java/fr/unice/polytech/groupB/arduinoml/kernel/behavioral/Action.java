@@ -1,9 +1,9 @@
-package fr.unice.polytech.idm.arduinoml.kernel.behavioral;
+package fr.unice.polytech.groupB.arduinoml.kernel.behavioral;
 
-import fr.unice.polytech.idm.arduinoml.kernel.generator.Visitable;
-import fr.unice.polytech.idm.arduinoml.kernel.generator.Visitor;
-import fr.unice.polytech.idm.arduinoml.kernel.structural.Actuator;
-import fr.unice.polytech.idm.arduinoml.kernel.structural.SIGNAL;
+import fr.unice.polytech.groupB.arduinoml.kernel.generator.Visitable;
+import fr.unice.polytech.groupB.arduinoml.kernel.generator.Visitor;
+import fr.unice.polytech.groupB.arduinoml.kernel.structural.Actuator;
+import fr.unice.polytech.groupB.arduinoml.kernel.structural.SIGNAL;
 
 public class Action implements Visitable {
 

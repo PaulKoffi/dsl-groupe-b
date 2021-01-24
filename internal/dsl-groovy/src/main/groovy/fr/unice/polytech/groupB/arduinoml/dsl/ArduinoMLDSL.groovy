@@ -1,8 +1,8 @@
-package fr.unice.polytech.idm.arduinoml.dsl
+package fr.unice.polytech.groupB.arduinoml.dsl
 
 import org.codehaus.groovy.control.CompilerConfiguration
 
-import fr.unice.polytech.idm.arduinoml.kernel.structural.SIGNAL
+import fr.unice.polytech.groupB.arduinoml.kernel.structural.SIGNAL
 
 class ArduinoMLDSL {
 	private GroovyShell shell

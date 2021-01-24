@@ -1,8 +1,8 @@
-package fr.unice.polytech.idm.arduinoml.main;
+package fr.unice.polytech.groupB.arduinoml.main;
 
 import java.io.File;
 
-import fr.unice.polytech.idm.arduinoml.dsl.ArduinoMLDSL;
+import fr.unice.polytech.groupB.arduinoml.dsl.ArduinoMLDSL;
 
 /**
  * This main takes one argument: tht path to the Groovy script file to execute.

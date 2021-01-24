@@ -3,9 +3,9 @@ package fr.unice.polytech.idm.arduinoml.kernel.behavioral;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.unice.polytech.idm.arduinoml.kernel.NamedElement;
-import fr.unice.polytech.idm.arduinoml.kernel.generator.Visitable;
-import fr.unice.polytech.idm.arduinoml.kernel.generator.Visitor;
+import fr.unice.polytech.groupB.arduinoml.kernel.NamedElement;
+import fr.unice.polytech.groupB.arduinoml.kernel.generator.Visitable;
+import fr.unice.polytech.groupB.arduinoml.kernel.generator.Visitor;
 
 public class State implements NamedElement, Visitable {
 

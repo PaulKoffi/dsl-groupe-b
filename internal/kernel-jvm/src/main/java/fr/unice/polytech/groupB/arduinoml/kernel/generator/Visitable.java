@@ -1,4 +1,4 @@
-package fr.unice.polytech.idm.arduinoml.kernel.generator;
+package fr.unice.polytech.groupB.arduinoml.kernel.generator;
 
 public interface Visitable {
 

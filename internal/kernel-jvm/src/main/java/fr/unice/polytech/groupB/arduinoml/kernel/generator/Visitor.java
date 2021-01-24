@@ -1,11 +1,11 @@
-package fr.unice.polytech.idm.arduinoml.kernel.generator;
+package fr.unice.polytech.groupB.arduinoml.kernel.generator;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import fr.unice.polytech.idm.arduinoml.kernel.App;
-import fr.unice.polytech.idm.arduinoml.kernel.behavioral.*;
-import fr.unice.polytech.idm.arduinoml.kernel.structural.*;
+import fr.unice.polytech.groupB.arduinoml.kernel.App;
+import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.*;
+import fr.unice.polytech.groupB.arduinoml.kernel.structural.*;
 
 public abstract class Visitor<T> {
 

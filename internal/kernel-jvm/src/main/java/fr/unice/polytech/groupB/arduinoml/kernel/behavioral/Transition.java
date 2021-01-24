@@ -1,8 +1,8 @@
-package fr.unice.polytech.idm.arduinoml.kernel.behavioral;
+package fr.unice.polytech.groupB.arduinoml.kernel.behavioral;
 
-import fr.unice.polytech.idm.arduinoml.kernel.generator.Visitable;
-import fr.unice.polytech.idm.arduinoml.kernel.generator.Visitor;
-import fr.unice.polytech.idm.arduinoml.kernel.structural.*;
+import fr.unice.polytech.groupB.arduinoml.kernel.generator.Visitable;
+import fr.unice.polytech.groupB.arduinoml.kernel.generator.Visitor;
+import fr.unice.polytech.groupB.arduinoml.kernel.structural.*;
 
 public class Transition implements Visitable {
 
