@@ -3,14 +3,11 @@ package fr.unice.polytech.groupB.arduinoml.dsl;
 import java.util.*;
 
 import fr.unice.polytech.groupB.arduinoml.kernel.App;
-import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.Action;
-import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.State;
-import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.Transition;
+import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.*;
 import fr.unice.polytech.groupB.arduinoml.kernel.generator.ToWiring;
 import fr.unice.polytech.groupB.arduinoml.kernel.generator.Visitor;
 import fr.unice.polytech.groupB.arduinoml.kernel.structural.Actuator;
 import fr.unice.polytech.groupB.arduinoml.kernel.structural.Brick;
-import fr.unice.polytech.groupB.arduinoml.kernel.structural.SIGNAL;
 import fr.unice.polytech.groupB.arduinoml.kernel.structural.Sensor;
 import groovy.lang.Binding;
 
@@ -52,11 +49,19 @@ public class ArduinoMLModel {
 		this.binding.setVariable(name, state);
 	}
 	
-	public void createTransition(State from, State to, Sensor sensor, SIGNAL value) {
+//	public void createTransition(State from, State to, Sensor sensor, SIGNAL value) {
+//		Transition transition = new Transition();
+//		transition.setNext(to);
+//		transition.setSensor(sensor);
+//		transition.setValue(value);
+//		from.setTransition(transition);
+//	}
+
+	public void createTransition(State from, State to, List<CombinationAction> allCombinationsActions) {
 		Transition transition = new Transition();
 		transition.setNext(to);
-		transition.setSensor(sensor);
-		transition.setValue(value);
+		// Range all combinations actions
+		transition.setCombinationActions(allCombinationsActions);
 		from.setTransition(transition);
 	}
 	

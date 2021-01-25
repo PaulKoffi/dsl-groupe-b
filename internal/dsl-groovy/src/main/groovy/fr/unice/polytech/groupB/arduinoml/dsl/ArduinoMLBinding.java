@@ -34,6 +34,14 @@ public class ArduinoMLBinding extends Binding {
 	}
 	
 	public Object getVariable(String name) {
+//		if ("and".equals(name)) {
+//			model.setC Operator.AND);
+//			return script;
+//		}
+//		if ("or".equals(name)) {
+//			model.setOperator(Operator.OR);
+//			return script;
+//		}
 		return super.getVariable(name);
 	}
 	

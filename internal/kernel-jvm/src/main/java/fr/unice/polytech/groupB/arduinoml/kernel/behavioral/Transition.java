@@ -4,39 +4,31 @@ import fr.unice.polytech.groupB.arduinoml.kernel.generator.Visitable;
 import fr.unice.polytech.groupB.arduinoml.kernel.generator.Visitor;
 import fr.unice.polytech.groupB.arduinoml.kernel.structural.*;
 
+import java.util.List;
+
 public class Transition implements Visitable {
 
-	private State next;
-	private Sensor sensor;
-	private SIGNAL value;
+    private State next;
+    private List<CombinationAction> combinationActions;
 
+    public State getNext() {
+        return next;
+    }
 
-	public State getNext() {
-		return next;
-	}
+    public void setNext(State next) {
+        this.next = next;
+    }
 
-	public void setNext(State next) {
-		this.next = next;
-	}
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
 
-	public Sensor getSensor() {
-		return sensor;
-	}
+    public List<CombinationAction> getCombinationActions() {
+        return combinationActions;
+    }
 
-	public void setSensor(Sensor sensor) {
-		this.sensor = sensor;
-	}
-
-	public SIGNAL getValue() {
-		return value;
-	}
-
-	public void setValue(SIGNAL value) {
-		this.value = value;
-	}
-
-	@Override
-	public void accept(Visitor visitor) {
-		visitor.visit(this);
-	}
+    public void setCombinationActions(List<CombinationAction> combinationActions) {
+        this.combinationActions = combinationActions;
+    }
 }
