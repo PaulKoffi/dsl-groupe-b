@@ -1,5 +1,5 @@
-sensor "button" pin 2
-actuator "led" pin 13
+sensor "button" pin 9
+actuator "led" pin 10
 actuator "buzzer" pin 11
 
 state "on" means led becomes high and buzzer becomes high
