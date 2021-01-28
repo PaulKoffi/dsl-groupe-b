@@ -5,9 +5,9 @@ grammar Arduinoml;
  ** Parser rules **
  ******************/
 
-root            :   /*declaration*/ bricks states initial transitions declaration EOF;
+root            :    bricks states initial transitions declaration EOF;
 
-//declaration     :   'application' name=IDENTIFIER;
+declaration     :   'export' name=APPLLICATION;
 
 bricks          :   (sensor|actuator)+;
     sensor      :    'sensor'   location ;
@@ -28,13 +28,13 @@ transitions     :   transition+;
     combinationAction:  (source=IDENTIFIER 'becomes' value=IDENTIFIER);
 
 
-declaration     :   'export' name=APPLLICATION;
+
 /*****************
  ** Lexer rules **
  *****************/
 
 PORT_NUMBER     :   [1-9] | '10' |'11' | '12';
-IDENTIFIER      :   LOWERCASE (LOWERCASE|UPPERCASE)+;
+IDENTIFIER      :   LOWERCASE (LOWERCASE|UPPERCASE)+ NUMBER?;
 APPLLICATION      :  (LOWERCASE|UPPERCASE)+ ;
 SIGNAL          :   'high' | 'low' ;
 
@@ -45,6 +45,7 @@ SIGNAL          :   'high' | 'low' ;
 
 fragment LOWERCASE  : [a-z];                                 // abstract rule, does not really exists
 fragment UPPERCASE  : [A-Z];
+fragment NUMBER     : [0-9]+;
 NEWLINE             : ('\r'? '\n' | '\r')+      -> skip;
 WS                  : ((' ' | '\t')+)           -> skip;     // who cares about whitespaces?
 COMMENT             : '#' ~( '\r' | '\n' )*     -> skip;     // Single line comments, starting with a #

@@ -72,10 +72,10 @@ public class ModelBuilder extends ArduinomlBaseListener {
         this.built = true;
     }
 
-//    @Override
-//    public void enterDeclaration(ArduinomlParser.DeclarationContext ctx) {
-//        theApp.setName(ctx.name.getText());
-//    }
+    @Override
+    public void enterDeclaration(ArduinomlParser.DeclarationContext ctx) {
+        theApp.setName(ctx.name.getText());
+    }
 
     @Override
     public void enterSensor(ArduinomlParser.SensorContext ctx) {
