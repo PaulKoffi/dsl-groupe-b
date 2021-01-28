@@ -9,6 +9,16 @@ import java.util.List;
 public class Transition implements Visitable {
 
     private State next;
+
+    public State getFrom() {
+        return from;
+    }
+
+    public void setFrom(State from) {
+        this.from = from;
+    }
+
+    private State from;
     private List<CombinationAction> combinationActions;
 
     public State getNext() {
