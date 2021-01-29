@@ -4,6 +4,8 @@ import fr.unice.polytech.groupB.arduinoml.kernel.App;
 import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.*;
 import fr.unice.polytech.groupB.arduinoml.kernel.structural.*;
 
+import javax.sound.midi.Soundbank;
+
 /**
  * Quick and dirty visitor to support the generation of Wiring code
  */
@@ -36,9 +38,20 @@ public class ToWiring extends Visitor<StringBuffer> {
 
 //		wln("long time = 0; long debounce = 200;\n");
 
+
+
 		for (State state : app.getStates()) {
+			for (Transition transition : app.getTransitions()) {
+				if (transition.getFrom().getName().equals(state.getName()) ){
+					state.setTransition(transition);
+				}
+			}
 			state.accept(this);
 		}
+
+
+
+
 
 		wln("void loop() {");
 		wln(String.format("  state_%s();", app.getInitial().getName()));
@@ -57,6 +70,8 @@ public class ToWiring extends Visitor<StringBuffer> {
 
 	@Override
 	public void visit(State state) {
+		System.out.println(state.getName());
+		System.out.println(state.getTransition());
 		wln(String.format("void state_%s() {", state.getName()));
 		for (Action action : state.getActions()) {
 			action.accept(this);
@@ -65,6 +80,7 @@ public class ToWiring extends Visitor<StringBuffer> {
 		wln("  delay(10);");
 
 		context.put(CURRENT_STATE, state);
+
 		state.getTransition().accept(this);
 		wln("}\n");
 

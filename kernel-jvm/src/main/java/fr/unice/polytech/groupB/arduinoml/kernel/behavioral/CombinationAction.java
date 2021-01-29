@@ -3,7 +3,7 @@ package fr.unice.polytech.groupB.arduinoml.kernel.behavioral;
 import fr.unice.polytech.groupB.arduinoml.kernel.structural.SIGNAL;
 import fr.unice.polytech.groupB.arduinoml.kernel.structural.Sensor;
 
-public class CombinationAction {
+public class    CombinationAction {
     private Sensor sensor;
     private SIGNAL value;
     private Combination combination;
