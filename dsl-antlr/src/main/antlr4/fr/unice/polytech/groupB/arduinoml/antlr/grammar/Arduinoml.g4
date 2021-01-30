@@ -15,8 +15,8 @@ bricks          :   (sensor|actuator)+;
     location    :   id=IDENTIFIER 'pin' port=PORT_NUMBER;
 
 states          :   state+;
-    state       :   'state'  name=IDENTIFIER  'means' (action ('and')?)+  ;
-    action      :   receiver=IDENTIFIER 'becomes' value=IDENTIFIER;
+    state       :   'state'  name=IDENTIFIER  'means' (action (operator= OPERATOR)?)+  ;
+    action      :   receiver=IDENTIFIER 'becomes' value=SIGNAL;
 
 
 initial :  'initial' starting=IDENTIFIER;
@@ -24,19 +24,23 @@ initial :  'initial' starting=IDENTIFIER;
 
 
 transitions     :   transition+;
-    transition  :   'from' begin=IDENTIFIER 'to' end=IDENTIFIER 'when' combinationAction (','combination=IDENTIFIER combinationAction? ) ?;
-    combinationAction:  (source=IDENTIFIER 'becomes' value=IDENTIFIER);
+    transition  :   'from' begin=IDENTIFIER 'to' end=IDENTIFIER  combinationAction (',' combination=OPERATOR combinationAction? )+;
+    combinationAction:  'when' source=IDENTIFIER 'becomes' value=SIGNAL;
 
 
 
 /*****************
  ** Lexer rules **
  *****************/
+OPERATOR        :   'and' | 'or' | 'nothing' ;
+SIGNAL          :   'high' | 'low' ;
 
 PORT_NUMBER     :   [1-9] | '10' |'11' | '12';
 IDENTIFIER      :   LOWERCASE (LOWERCASE|UPPERCASE)+ NUMBER?;
-APPLLICATION      :  (LOWERCASE|UPPERCASE)+ ;
-SIGNAL          :   'high' | 'low' ;
+
+APPLLICATION      :  (LOWERCASE|UPPERCASE) (LOWERCASE|UPPERCASE)+ ;
+
+
 
 
 /*************
