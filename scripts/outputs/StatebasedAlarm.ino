@@ -6,27 +6,41 @@ void setup(){
   pinMode(8, OUTPUT); // led [Actuator]
 }
 
-void state_on() {
+long time = 0; long debounce = 200;
+
+int state_on() {
   digitalWrite(8,HIGH);
-  delay(10);
-  if(digitalRead(2) == HIGH ) {
-    state_off();
+  boolean guard = millis() - time > debounce;
+  if(digitalRead(2) == 1 && guard) {
+    time = millis();
+    return 2;
   } else {
-    state_on();
+    return 1;
   }
 }
 
-void state_off() {
+int state_off() {
   digitalWrite(8,LOW);
-  delay(10);
-  if(digitalRead(2) == HIGH ) {
-    state_on();
+  boolean guard = millis() - time > debounce;
+  if(digitalRead(2) == 1 && guard) {
+    time = millis();
+    return 1;
   } else {
-    state_off();
+    return 2;
   }
 }
 
+int state = 2;
 void loop() {
-  state_off();
+  switch(state) {
+    case 1:
+      state = state_on();
+      break;
+    case 2:
+      state = state_off();
+      break;
+    default:
+      break;
+  }
 }
 
