@@ -24,7 +24,7 @@ initial :  'initial' starting=IDENTIFIER;
 
 
 transitions     :   transition+;
-    transition  :   'from' begin=IDENTIFIER 'to' end=IDENTIFIER  combinationAction (',' combination=OPERATOR combinationAction? )+;
+    transition  :   ('from'|'fromC') begin=IDENTIFIER 'to' end=IDENTIFIER  combinationAction (',' combination=OPERATOR combinationAction )?;
     combinationAction:  'when' source=IDENTIFIER 'becomes' value=SIGNAL;
 
 
@@ -33,7 +33,7 @@ transitions     :   transition+;
 /*****************
  ** Lexer rules **
  *****************/
-OPERATOR        :   'and' | 'or' | 'nothing' ;
+OPERATOR        :   'and' | 'or' ;
 SIGNAL          :   'high' | 'low' ;
 
 PORT_NUMBER     :   [1-9] | '10' |'11' | '12';

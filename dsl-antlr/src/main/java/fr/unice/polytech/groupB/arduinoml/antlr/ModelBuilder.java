@@ -4,10 +4,7 @@ import fr.unice.polytech.groupB.arduinoml.antlr.grammar.*;
 
 
 import fr.unice.polytech.groupB.arduinoml.kernel.App;
-import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.Action;
-import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.ConditionAction;
-import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.State;
-import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.Transition;
+import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.*;
 import fr.unice.polytech.groupB.arduinoml.kernel.structural.Actuator;
 import fr.unice.polytech.groupB.arduinoml.kernel.structural.SIGNAL;
 import fr.unice.polytech.groupB.arduinoml.kernel.structural.Sensor;
@@ -43,11 +40,13 @@ public class ModelBuilder extends ArduinomlBaseListener {
     private Map<String, Binding>  bindings  = new HashMap<>();
 
     private class Binding { // used to support state resolution for transitions
-        private State to;
+        private State next;
         private State from;
-        private List<ConditionAction> conditionActions;
+        private List<ConditionAction> conditionActions=new ArrayList<>();
+        private Condition condition = Condition.NULL;
     }
 
+    int stateId = 1;
     private final int avoidSpecials =1;
     private State currentState = null;
     private Binding currentBinding =null;
@@ -66,8 +65,8 @@ public class ModelBuilder extends ArduinomlBaseListener {
         // Resolving states in transitions
         bindings.forEach((key, binding) ->  {
             Transition t = new Transition();
-            t.setNext(states.get(binding.to));
-            });
+            t.setNext(states.get(binding.next));
+        });
         this.built = true;
     }
 
@@ -99,7 +98,9 @@ public class ModelBuilder extends ArduinomlBaseListener {
         State local = new State();
         local.setName(ctx.name.getText().substring(avoidSpecials,ctx.name.getText().length()-avoidSpecials));
         this.currentState = local;
+        local.setId(stateId);
         this.states.put(local.getName(), local);
+        stateId++;
     }
 
     @Override
@@ -123,7 +124,7 @@ public class ModelBuilder extends ArduinomlBaseListener {
         Binding toBeResolvedLater = new Binding();
         this.currentBinding = toBeResolvedLater;
 
-        toBeResolvedLater.to = states.get(ctx.end.getText());
+        toBeResolvedLater.next = states.get(ctx.end.getText());
         toBeResolvedLater.from = states.get(ctx.begin.getText());
         this.currentBinding = toBeResolvedLater;
         this.currentBinding.conditionActions = new ArrayList<>();
@@ -134,8 +135,12 @@ public class ModelBuilder extends ArduinomlBaseListener {
     @Override
     public void exitTransition(ArduinomlParser.TransitionContext ctx) {
         Transition transition = new Transition();
-        transition.setNext(currentBinding.to);
+        transition.setNext(currentBinding.next);
         transition.setFrom(currentBinding.from);
+        if (ctx.combination != null){
+            transition.setCondition(Condition.valueOf(ctx.combination.getText().toUpperCase()));
+        }
+
         transition.setConditionActions(currentBinding.conditionActions);
         bindings.put(ctx.begin.getText(), currentBinding);
         theApp.getTransitions().add(transition);
@@ -155,6 +160,7 @@ public class ModelBuilder extends ArduinomlBaseListener {
     public void enterInitial(ArduinomlParser.InitialContext ctx) {
         this.theApp.setInitial(states.get(ctx.starting.getText()));
     }
+
 
 }
 
