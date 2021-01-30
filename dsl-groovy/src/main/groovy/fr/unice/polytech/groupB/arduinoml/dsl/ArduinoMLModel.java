@@ -14,13 +14,19 @@ import groovy.lang.Binding;
 public class ArduinoMLModel {
 	private List<Brick> bricks;
 	private List<State> states;
+	private List<Transition> transitions;
 	private State initialState;
-	
+
+	private Condition currentCondition;
+	private List<ConditionAction> conditionsList;
+
 	private Binding binding;
-	
 	public ArduinoMLModel(Binding binding) {
 		this.bricks = new ArrayList<Brick>();
 		this.states = new ArrayList<State>();
+		this.transitions = new ArrayList<Transition>();
+		this.conditionsList = new ArrayList<ConditionAction>();
+
 		this.binding = binding;
 	}
 	
@@ -49,22 +55,61 @@ public class ArduinoMLModel {
 		this.binding.setVariable(name, state);
 	}
 	
-//	public void createTransition(State from, State to, Sensor sensor, SIGNAL value) {
-//		Transition transition = new Transition();
-//		transition.setNext(to);
-//		transition.setSensor(sensor);
-//		transition.setValue(value);
-//		from.setTransition(transition);
-//	}
-
-	public void createTransition(State from, State to, List<CombinationAction> allCombinationsActions) {
+	public void createTransition(State from, State to) {
 		Transition transition = new Transition();
 		transition.setNext(to);
-		// Range all combinations actions
-		transition.setCombinationActions(allCombinationsActions);
-		from.setTransition(transition);
+		transition.setFrom(from);
+		this.transitions.add(transition);
+		// set CONDITION TO INITIAL MODE
+		this.currentCondition = Condition.NULL;
 	}
-	
+
+	public void addToLastTransition(ConditionAction conditionAction){
+		if (this.currentCondition != Condition.NULL) {
+			// on est donc en train d'interpréter la seconde partie de la condition
+//			System.out.println("je suis ici");
+			this.transitions.get(this.transitions.size() - 1).setCondition(this.currentCondition);
+//			System.out.println("je suis ici");
+		}
+
+//		if(this.conditionsList.size()!=2){
+//			this.conditionsList.add(conditionAction);
+//		}else{
+//			if(this.transitions.size() == 1){
+//				this.transitions.get(0).setConditionActions(this.conditionsList);
+//			}else {
+//				this.transitions.get(this.transitions.size() - 1).setConditionActions(this.conditionsList);
+//			}
+//			this.conditionsList = new ArrayList<>();
+//		}
+
+		if(this.transitions.size() == 1){
+			this.transitions.get(0).addToConditionActions(conditionAction);
+//			System.out.println("passééééé");
+
+		}else {
+			this.transitions.get(this.transitions.size() - 1).addToConditionActions(conditionAction);
+		}
+	}
+
+//	public void createTransition(State from, State to, List<ConditionAction> allCombinationsActions) {
+//		Transition transition = new Transition();
+//		transition.setNext(to);
+//		transition.setFrom(from);
+//		transition.setCondition(this.currentCondition);
+//		// Range all combinations actions
+//		transition.setCombinationActions(allCombinationsActions);
+//		this.transitions.add(transition);
+//	}
+
+	public Condition getCurrentCondition() {
+		return currentCondition;
+	}
+
+	public void setCurrentCondition(Condition currentCondition) {
+		this.currentCondition = currentCondition;
+	}
+
 	public void setInitialState(State state) {
 		this.initialState = state;
 	}
@@ -75,10 +120,10 @@ public class ArduinoMLModel {
 		app.setName(appName);
 		app.setBricks(this.bricks);
 		app.setStates(this.states);
+		app.setTransitions(this.transitions);
 		app.setInitial(this.initialState);
 		Visitor codeGenerator = new ToWiring();
 		app.accept(codeGenerator);
-		
 		return codeGenerator.getResult();
 	}
 }

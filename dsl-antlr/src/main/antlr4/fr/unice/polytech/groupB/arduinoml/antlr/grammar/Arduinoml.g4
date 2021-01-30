@@ -24,8 +24,8 @@ initial :  'initial' starting=IDENTIFIER;
 
 
 transitions     :   transition+;
-    transition  :   'from' begin=IDENTIFIER 'to' end=IDENTIFIER 'when' combinationAction (','combination=IDENTIFIER combinationAction? ) ?;
-    combinationAction:  (source=IDENTIFIER 'becomes' value=IDENTIFIER);
+    transition  :   'from' begin=IDENTIFIER 'to' end=IDENTIFIER 'when' conditionAction (','condition=IDENTIFIER conditionAction? ) ?;
+    conditionAction:  (source=IDENTIFIER 'becomes' value=IDENTIFIER);
 
 
 

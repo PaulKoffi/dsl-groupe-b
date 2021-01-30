@@ -1,8 +1,11 @@
 package fr.unice.polytech.groupB.arduinoml.dsl
 
 import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.Action
-import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.CombinationAction
+import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.Condition
+import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.ConditionAction
 import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.State
+import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.Transition
+import fr.unice.polytech.groupB.arduinoml.kernel.structural.Sensor
 
 
 abstract class ArduinoMLBasescript extends Script {
@@ -41,29 +44,19 @@ abstract class ArduinoMLBasescript extends Script {
 
     // from state1 to state2 when sensor becomes signal
     def from(State state1) {
-//		[to: { state2 ->
-//			[when: { sensor ->
-//				[becomes: { signal ->
-//					((ArduinoMLBinding) this.getBinding()).getGroovuinoMLModel().createTransition(state1, state2, sensor, signal)
-//				}]
-//			}]
-//		}]
-
-        List<CombinationAction> combinationActions = new ArrayList<CombinationAction>()
-
-        def closure
         [to: { state2 ->
-            ((ArduinoMLBinding) this.getBinding()).getGroovuinoMLModel().createTransition(state1, state2, combinationActions)
-            [when: closure = { sensor ->
-                [becomes: { signal, combination ->
-                    CombinationAction combinationAction = new CombinationAction()
-                    combinationAction.setSensor(sensor)
-                    combinationAction.setValue(signal)
-                    combinationAction.setCombination(combination)
-                    combinationActions.add(combinationAction)
-                    [when: closure]
-                }]
+            ((ArduinoMLBinding) this.getBinding()).getGroovuinoMLModel().createTransition(state1, state2)
+            [when: {
             }]
+        }]
+    }
+
+    def _(Sensor sensor) {
+        [is: {signal ->
+            ConditionAction conditionAction = new ConditionAction()
+            conditionAction.setSensor(sensor)
+            conditionAction.setValue(signal)
+            ((ArduinoMLBinding) this.getBinding()).getGroovuinoMLModel().addToLastTransition(conditionAction)
         }]
     }
 

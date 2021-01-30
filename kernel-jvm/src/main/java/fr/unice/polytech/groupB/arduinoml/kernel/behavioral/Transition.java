@@ -2,13 +2,16 @@ package fr.unice.polytech.groupB.arduinoml.kernel.behavioral;
 
 import fr.unice.polytech.groupB.arduinoml.kernel.generator.Visitable;
 import fr.unice.polytech.groupB.arduinoml.kernel.generator.Visitor;
-import fr.unice.polytech.groupB.arduinoml.kernel.structural.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Transition implements Visitable {
 
     private State next;
+    private State from;
+    private List<ConditionAction> conditionActions = new ArrayList<ConditionAction>();
+    private Condition condition = Condition.NULL;
 
     public State getFrom() {
         return from;
@@ -17,9 +20,6 @@ public class Transition implements Visitable {
     public void setFrom(State from) {
         this.from = from;
     }
-
-    private State from;
-    private List<CombinationAction> combinationActions;
 
     public State getNext() {
         return next;
@@ -34,11 +34,23 @@ public class Transition implements Visitable {
         visitor.visit(this);
     }
 
-    public List<CombinationAction> getCombinationActions() {
-        return combinationActions;
+    public List<ConditionAction> getConditionActions() {
+        return conditionActions;
     }
 
-    public void setCombinationActions(List<CombinationAction> combinationActions) {
-        this.combinationActions = combinationActions;
+    public void setConditionActions(List<ConditionAction> conditionActions) {
+        this.conditionActions = conditionActions;
+    }
+
+    public void addToConditionActions(ConditionAction conditionActions) {
+        this.conditionActions.add(conditionActions);
+    }
+
+    public Condition getCondition() {
+        return condition;
+    }
+
+    public void setCondition(Condition condition) {
+        this.condition = condition;
     }
 }

@@ -38,8 +38,8 @@
 	</dependencies>
 
 	<modules>
-<!--		<module>dsl-groovy</module>-->
+		<module>dsl-groovy</module>
 		<module>kernel-jvm</module>
-		<module>dsl-antlr</module>
+<!--		<module>dsl-antlr</module>-->
 	</modules>
 </project>
