@@ -38,14 +38,13 @@ abstract class ArduinoMLBasescript extends Script {
     }
 
     // from state1 to state2 when sensor becomes signal
-    def from(State state1) {
+    def fromC(State state1) {
         List<ConditionAction> conditionActionArrayList = new ArrayList<ConditionAction>()
         def closure
         [to: { state2 ->
             [when: closure = { sensor ->
                 [becomes: { signal, condition ->
                     ConditionAction conditionAction = new ConditionAction()
-                    c = condition
                     conditionAction.setSensor(sensor)
                     conditionAction.setValue(signal)
                     conditionActionArrayList.add(conditionAction)
@@ -58,6 +57,23 @@ abstract class ArduinoMLBasescript extends Script {
                             ((ArduinoMLBinding) this.getBinding()).getGroovuinoMLModel().createTransition2(state1, state2, conditionActionArrayList, condition)
                         }]
                     }]
+                }]
+            }]
+        }]
+    }
+
+    // from state1 to state2 when sensor becomes signal
+    def from(State state1) {
+        List<ConditionAction> conditionActionArrayList = new ArrayList<ConditionAction>()
+        def closure
+        [to: { state2 ->
+            [when: closure = { sensor ->
+                [becomes: { signal ->
+                    ConditionAction conditionAction = new ConditionAction()
+                    conditionAction.setSensor(sensor)
+                    conditionAction.setValue(signal)
+                    conditionActionArrayList.add(conditionAction)
+                    ((ArduinoMLBinding) this.getBinding()).getGroovuinoMLModel().createTransition2(state1, state2, conditionActionArrayList, Condition.NULL)
                 }]
             }]
         }]
