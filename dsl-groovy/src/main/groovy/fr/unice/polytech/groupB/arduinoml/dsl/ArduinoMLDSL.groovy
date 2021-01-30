@@ -2,6 +2,7 @@ package fr.unice.polytech.groupB.arduinoml.dsl
 
 
 import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.Condition
+import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.ConditionAction
 import org.codehaus.groovy.control.CompilerConfiguration
 
 import fr.unice.polytech.groupB.arduinoml.kernel.structural.SIGNAL
@@ -21,6 +22,9 @@ class ArduinoMLDSL {
 
         binding.setVariable("high", SIGNAL.HIGH)
         binding.setVariable("low", SIGNAL.LOW)
+
+        binding.setVariable("and", Condition.AND)
+        binding.setVariable("or", Condition.OR)
     }
 
     void eval(File scriptFile) {

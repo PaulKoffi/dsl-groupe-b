@@ -37,27 +37,35 @@ abstract class ArduinoMLBasescript extends Script {
         [means: closure]
     }
 
-    // initial state
-    def initial(State state) {
-        ((ArduinoMLBinding) this.getBinding()).getGroovuinoMLModel().setInitialState(state)
-    }
-
     // from state1 to state2 when sensor becomes signal
     def from(State state1) {
+        List<ConditionAction> conditionActionArrayList = new ArrayList<ConditionAction>()
+        def closure
         [to: { state2 ->
-            ((ArduinoMLBinding) this.getBinding()).getGroovuinoMLModel().createTransition(state1, state2)
-            [when: {
+            [when: closure = { sensor ->
+                [becomes: { signal, condition ->
+                    ConditionAction conditionAction = new ConditionAction()
+                    c = condition
+                    conditionAction.setSensor(sensor)
+                    conditionAction.setValue(signal)
+                    conditionActionArrayList.add(conditionAction)
+                    [when: { sensor2 ->
+                        [becomes: { signal2 ->
+                            ConditionAction conditionAction1 = new ConditionAction()
+                            conditionAction1.setSensor(sensor2)
+                            conditionAction1.setValue(signal2)
+                            conditionActionArrayList.add(conditionAction1)
+                            ((ArduinoMLBinding) this.getBinding()).getGroovuinoMLModel().createTransition2(state1, state2, conditionActionArrayList, condition)
+                        }]
+                    }]
+                }]
             }]
         }]
     }
 
-    def _(Sensor sensor) {
-        [is: {signal ->
-            ConditionAction conditionAction = new ConditionAction()
-            conditionAction.setSensor(sensor)
-            conditionAction.setValue(signal)
-            ((ArduinoMLBinding) this.getBinding()).getGroovuinoMLModel().addToLastTransition(conditionAction)
-        }]
+    // initial state
+    def initial(State state) {
+        ((ArduinoMLBinding) this.getBinding()).getGroovuinoMLModel().setInitialState(state)
     }
 
     // export name

@@ -8,7 +8,7 @@ import fr.unice.polytech.groupB.arduinoml.kernel.structural.*;
  * Quick and dirty visitor to support the generation of Wiring code
  */
 public class ToWiring extends Visitor<StringBuffer> {
-
+    enum PASS {ONE, TWO}
     private final static String CURRENT_STATE = "current_state";
 
     public ToWiring() {
@@ -25,14 +25,12 @@ public class ToWiring extends Visitor<StringBuffer> {
 
     @Override
     public void visit(App app) {
+        //first pass, create global vars
+        context.put("pass", PASS.ONE);
         wln("// Wiring code generated from an ArduinoML model");
         wln(String.format("// Application name: %s\n", app.getName()));
 
-        wln("void setup(){");
-        for (Brick brick : app.getBricks()) {
-            brick.accept(this);
-        }
-        wln("}\n");
+
 
 //		wln("long time = 0; long debounce = 200;\n");
 
@@ -44,7 +42,18 @@ public class ToWiring extends Visitor<StringBuffer> {
                     transition.accept(this);
                 }
             }
+            wln("}\n");
         }
+
+        //second pass, setup and loop
+        context.put("pass",PASS.TWO);
+
+        wln("void setup(){");
+        for (Brick brick : app.getBricks()) {
+//            System.out.println("ici");
+            brick.accept(this);
+        }
+        wln("}\n");
 
         wln("void loop() {");
         wln(String.format("  state_%s();", app.getInitial().getName()));
@@ -53,17 +62,27 @@ public class ToWiring extends Visitor<StringBuffer> {
 
     @Override
     public void visit(Actuator actuator) {
-        wln(String.format("  pinMode(%d, OUTPUT); // %s [Actuator]", actuator.getPin(), actuator.getName()));
+        if(context.get("pass") == PASS.ONE) {
+            return;
+        }
+        if(context.get("pass") == PASS.TWO) {
+            wln(String.format("  pinMode(%d, OUTPUT); // %s [Actuator]", actuator.getPin(), actuator.getName()));
+        }
     }
 
     @Override
     public void visit(Sensor sensor) {
-        wln(String.format("  pinMode(%d, INPUT);  // %s [Sensor]", sensor.getPin(), sensor.getName()));
+        if(context.get("pass") == PASS.ONE) {
+            return;
+        }
+        if(context.get("pass") == PASS.TWO) {
+            wln(String.format("  pinMode(%d, INPUT);  // %s [Sensor]", sensor.getPin(), sensor.getName()));
+        }
     }
 
     @Override
     public void visit(State state) {
-        System.out.println(state.getName());
+//        System.out.println(state.getName());
 //		System.out.println(state.getTransition());
         wln(String.format("void state_%s() {", state.getName()));
         for (Action action : state.getActions()) {
@@ -75,7 +94,6 @@ public class ToWiring extends Visitor<StringBuffer> {
         context.put(CURRENT_STATE, state);
 
 //		state.getTransition().accept(this);
-        wln("}\n");
     }
 
     @Override
@@ -85,12 +103,12 @@ public class ToWiring extends Visitor<StringBuffer> {
 
         if (transition.getCondition() != null) {
             if (transition.getCondition().equals(Condition.AND)) {
-                w(String.format("&& "));
+                w(String.format("&& digitalRead(%d) == %s ", transition.getConditionActions().get(1).getSensor().getPin(), transition.getConditionActions().get(1).getValue()));
             }
             if (transition.getCondition().equals(Condition.OR)) {
-                w(String.format("|| "));
+                w(String.format("|| digitalRead(%d) == %s ", transition.getConditionActions().get(1).getSensor().getPin(), transition.getConditionActions().get(1).getValue()));
             }
-            w(String.format("digitalRead(%d) == %s ", transition.getConditionActions().get(1).getSensor().getPin(), transition.getConditionActions().get(1).getValue()));
+//            w(String.format("digitalRead(%d) == %s ", transition.getConditionActions().get(1).getSensor().getPin(), transition.getConditionActions().get(1).getValue()));
         }
 
         wln(String.format(") {"));
@@ -105,7 +123,11 @@ public class ToWiring extends Visitor<StringBuffer> {
 
     @Override
     public void visit(Action action) {
-        wln(String.format("  digitalWrite(%d,%s);", action.getActuator().getPin(), action.getValue()));
+//        if(context.get("pass") == PASS.ONE) {
+//            return;
+//        }
+//        if(context.get("pass") == PASS.TWO) {
+            wln(String.format("  digitalWrite(%d,%s);", action.getActuator().getPin(), action.getValue()));
+//        }
     }
-
 }

@@ -35,14 +35,6 @@ public class ArduinoMLBinding extends Binding {
 	}
 	
 	public Object getVariable(String name) {
-		if ("andC".equals(name)) {
-			model.setCurrentCondition(Condition.AND);
-			return script;
-		}
-		if ("orC".equals(name)) {
-			model.setCurrentCondition(Condition.OR);
-			return script;
-		}
 		return super.getVariable(name);
 	}
 	
