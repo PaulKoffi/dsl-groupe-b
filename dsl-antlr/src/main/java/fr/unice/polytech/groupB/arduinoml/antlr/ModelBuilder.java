@@ -48,7 +48,7 @@ public class ModelBuilder extends ArduinomlBaseListener {
         private List<CombinationAction> combinationActions;
     }
 
-
+    private final int avoidSpecials =1;
     private State currentState = null;
     private Binding currentBinding =null;
 
@@ -80,7 +80,7 @@ public class ModelBuilder extends ArduinomlBaseListener {
     @Override
     public void enterSensor(ArduinomlParser.SensorContext ctx) {
         Sensor sensor = new Sensor();
-        sensor.setName(ctx.location().id.getText());
+        sensor.setName(ctx.location().id.getText().substring(avoidSpecials,ctx.location().id.getText().length()-avoidSpecials));
         sensor.setPin(Integer.parseInt(ctx.location().port.getText()));
         this.theApp.getBricks().add(sensor);
         sensors.put(sensor.getName(), sensor);
@@ -89,7 +89,7 @@ public class ModelBuilder extends ArduinomlBaseListener {
     @Override
     public void enterActuator(ArduinomlParser.ActuatorContext ctx) {
         Actuator actuator = new Actuator();
-        actuator.setName(ctx.location().id.getText());
+        actuator.setName(ctx.location().id.getText().substring(avoidSpecials,ctx.location().id.getText().length()-avoidSpecials));
         actuator.setPin(Integer.parseInt(ctx.location().port.getText()));
         this.theApp.getBricks().add(actuator);
         actuators.put(actuator.getName(), actuator);
@@ -98,7 +98,7 @@ public class ModelBuilder extends ArduinomlBaseListener {
     @Override
     public void enterState(ArduinomlParser.StateContext ctx) {
         State local = new State();
-        local.setName(ctx.name.getText());
+        local.setName(ctx.name.getText().substring(avoidSpecials,ctx.name.getText().length()-avoidSpecials));
         this.currentState = local;
         this.states.put(local.getName(), local);
     }

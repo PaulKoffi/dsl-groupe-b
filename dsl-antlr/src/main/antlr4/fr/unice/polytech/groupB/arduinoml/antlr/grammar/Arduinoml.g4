@@ -12,10 +12,10 @@ declaration     :   'export' name=APPLLICATION;
 bricks          :   (sensor|actuator)+;
     sensor      :    'sensor'   location ;
     actuator    :   'actuator'  location ;
-    location    :   id=IDENTIFIER 'pin' port=PORT_NUMBER;
+    location    :   id=DEFINITION 'pin' port=PORT_NUMBER;
 
 states          :   state+;
-    state       :   'state'  name=IDENTIFIER  'means' (action (operator= OPERATOR)?)+  ;
+    state       :   'state'  name=DEFINITION  'means' (action (operator= OPERATOR)?)+  ;
     action      :   receiver=IDENTIFIER 'becomes' value=SIGNAL;
 
 
@@ -36,9 +36,10 @@ OPERATOR        :   'and' | 'or' | 'nothing' ;
 SIGNAL          :   'high' | 'low' ;
 
 PORT_NUMBER     :   [1-9] | '10' |'11' | '12';
+DEFINITION      :   '"' LOWERCASE (LOWERCASE|UPPERCASE)+ NUMBER? '"';
 IDENTIFIER      :   LOWERCASE (LOWERCASE|UPPERCASE)+ NUMBER?;
 
-APPLLICATION      :  (LOWERCASE|UPPERCASE) (LOWERCASE|UPPERCASE)+ ;
+APPLLICATION      : '"' (LOWERCASE|UPPERCASE) (LOWERCASE|UPPERCASE|' ')+ '"';
 
 
 
@@ -53,4 +54,3 @@ fragment NUMBER     : [0-9]+;
 NEWLINE             : ('\r'? '\n' | '\r')+      -> skip;
 WS                  : ((' ' | '\t')+)           -> skip;     // who cares about whitespaces?
 COMMENT             : '#' ~( '\r' | '\n' )*     -> skip;     // Single line comments, starting with a #
-UNKNOWN_CHAR : . ;
