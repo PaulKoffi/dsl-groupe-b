@@ -5,7 +5,7 @@ import fr.unice.polytech.groupB.arduinoml.antlr.grammar.*;
 
 import fr.unice.polytech.groupB.arduinoml.kernel.App;
 import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.Action;
-import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.CombinationAction;
+import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.ConditionAction;
 import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.State;
 import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.Transition;
 import fr.unice.polytech.groupB.arduinoml.kernel.structural.Actuator;
@@ -45,7 +45,7 @@ public class ModelBuilder extends ArduinomlBaseListener {
     private class Binding { // used to support state resolution for transitions
         private State to;
         private State from;
-        private List<CombinationAction> combinationActions;
+        private List<ConditionAction> conditionActions;
     }
 
     private final int avoidSpecials =1;
@@ -67,8 +67,7 @@ public class ModelBuilder extends ArduinomlBaseListener {
         bindings.forEach((key, binding) ->  {
             Transition t = new Transition();
             t.setNext(states.get(binding.to));
-            states.get(key).setTransition(t);
-        });
+            });
         this.built = true;
     }
 
@@ -127,7 +126,7 @@ public class ModelBuilder extends ArduinomlBaseListener {
         toBeResolvedLater.to = states.get(ctx.end.getText());
         toBeResolvedLater.from = states.get(ctx.begin.getText());
         this.currentBinding = toBeResolvedLater;
-        this.currentBinding.combinationActions= new ArrayList<>();
+        this.currentBinding.conditionActions = new ArrayList<>();
 
 
     }
@@ -137,14 +136,8 @@ public class ModelBuilder extends ArduinomlBaseListener {
         Transition transition = new Transition();
         transition.setNext(currentBinding.to);
         transition.setFrom(currentBinding.from);
-        transition.setCombinationActions(currentBinding.combinationActions);
+        transition.setConditionActions(currentBinding.conditionActions);
         bindings.put(ctx.begin.getText(), currentBinding);
-        this.states.get(ctx.begin.getText()).setTransition(transition);
-        for (State state:theApp.getStates()) {
-            if(state!= null && state.getName().equals(ctx.begin.getText())){
-                state.setTransition(transition);
-            }
-        }
         theApp.getTransitions().add(transition);
         this.currentBinding = null;
 
@@ -152,10 +145,10 @@ public class ModelBuilder extends ArduinomlBaseListener {
 
     @Override
     public void enterCombinationAction(ArduinomlParser.CombinationActionContext ctx){
-        CombinationAction combinationAction =new CombinationAction();
-        combinationAction.setSensor(sensors.get(ctx.source.getText()));
-        combinationAction.setValue(SIGNAL.valueOf(ctx.value.getText().toUpperCase()));
-        currentBinding.combinationActions.add(combinationAction);
+        ConditionAction conditionAction =new ConditionAction();
+        conditionAction.setSensor(sensors.get(ctx.source.getText()));
+        conditionAction.setValue(SIGNAL.valueOf(ctx.value.getText().toUpperCase()));
+        currentBinding.conditionActions.add(conditionAction);
     }
 
     @Override

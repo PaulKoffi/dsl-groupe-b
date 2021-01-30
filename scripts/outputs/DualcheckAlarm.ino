@@ -1,12 +1,6 @@
 // Wiring code generated from an ArduinoML model
 // Application name: Dual Check Alarm
 
-void setup(){
-  pinMode(4, INPUT);  // button1 [Sensor]
-  pinMode(2, INPUT);  // button2 [Sensor]
-  pinMode(8, OUTPUT); // buzzer [Actuator]
-}
-
 void state_on() {
   digitalWrite(8,HIGH);
   delay(10);
@@ -25,6 +19,12 @@ void state_off() {
   } else {
     state_off();
   }
+}
+
+void setup(){
+  pinMode(4, INPUT);  // button1 [Sensor]
+  pinMode(2, INPUT);  // button2 [Sensor]
+  pinMode(8, OUTPUT); // buzzer [Actuator]
 }
 
 void loop() {

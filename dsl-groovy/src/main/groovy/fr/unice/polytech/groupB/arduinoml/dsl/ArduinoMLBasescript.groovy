@@ -1,8 +1,11 @@
 package fr.unice.polytech.groupB.arduinoml.dsl
 
 import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.Action
-import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.CombinationAction
+import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.Condition
+import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.ConditionAction
 import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.State
+import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.Transition
+import fr.unice.polytech.groupB.arduinoml.kernel.structural.Sensor
 
 
 abstract class ArduinoMLBasescript extends Script {
@@ -34,37 +37,51 @@ abstract class ArduinoMLBasescript extends Script {
         [means: closure]
     }
 
-    // initial state
-    def initial(State state) {
-        ((ArduinoMLBinding) this.getBinding()).getGroovuinoMLModel().setInitialState(state)
+    // from state1 to state2 when sensor becomes signal
+    def fromC(State state1) {
+        List<ConditionAction> conditionActionArrayList = new ArrayList<ConditionAction>()
+        def closure
+        [to: { state2 ->
+            [when: closure = { sensor ->
+                [becomes: { signal, condition ->
+                    ConditionAction conditionAction = new ConditionAction()
+                    conditionAction.setSensor(sensor)
+                    conditionAction.setValue(signal)
+                    conditionActionArrayList.add(conditionAction)
+                    [when: { sensor2 ->
+                        [becomes: { signal2 ->
+                            ConditionAction conditionAction1 = new ConditionAction()
+                            conditionAction1.setSensor(sensor2)
+                            conditionAction1.setValue(signal2)
+                            conditionActionArrayList.add(conditionAction1)
+                            ((ArduinoMLBinding) this.getBinding()).getGroovuinoMLModel().createTransition2(state1, state2, conditionActionArrayList, condition)
+                        }]
+                    }]
+                }]
+            }]
+        }]
     }
 
     // from state1 to state2 when sensor becomes signal
     def from(State state1) {
-//		[to: { state2 ->
-//			[when: { sensor ->
-//				[becomes: { signal ->
-//					((ArduinoMLBinding) this.getBinding()).getGroovuinoMLModel().createTransition(state1, state2, sensor, signal)
-//				}]
-//			}]
-//		}]
-
-        List<CombinationAction> combinationActions = new ArrayList<CombinationAction>()
-
+        List<ConditionAction> conditionActionArrayList = new ArrayList<ConditionAction>()
         def closure
         [to: { state2 ->
-            ((ArduinoMLBinding) this.getBinding()).getGroovuinoMLModel().createTransition(state1, state2, combinationActions)
             [when: closure = { sensor ->
-                [becomes: { signal, combination ->
-                    CombinationAction combinationAction = new CombinationAction()
-                    combinationAction.setSensor(sensor)
-                    combinationAction.setValue(signal)
-                    combinationAction.setCombination(combination)
-                    combinationActions.add(combinationAction)
-                    [when: closure]
+                [becomes: { signal ->
+                    ConditionAction conditionAction = new ConditionAction()
+                    conditionAction.setSensor(sensor)
+                    conditionAction.setValue(signal)
+                    conditionActionArrayList.add(conditionAction)
+                    ((ArduinoMLBinding) this.getBinding()).getGroovuinoMLModel().createTransition2(state1, state2, conditionActionArrayList, Condition.NULL)
                 }]
             }]
         }]
+    }
+
+    // initial state
+    def initial(State state) {
+        ((ArduinoMLBinding) this.getBinding()).getGroovuinoMLModel().setInitialState(state)
     }
 
     // export name

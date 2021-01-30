@@ -1,12 +1,12 @@
 package fr.unice.polytech.groupB.arduinoml.kernel.behavioral;
-
+import fr.unice.polytech.groupB.arduinoml.kernel.generator.Visitable;
+import fr.unice.polytech.groupB.arduinoml.kernel.generator.Visitor;
 import fr.unice.polytech.groupB.arduinoml.kernel.structural.SIGNAL;
 import fr.unice.polytech.groupB.arduinoml.kernel.structural.Sensor;
 
-public class    CombinationAction {
+public class ConditionAction {
     private Sensor sensor;
     private SIGNAL value;
-    private Combination combination;
 
     public Sensor getSensor() {
         return sensor;
@@ -22,13 +22,5 @@ public class    CombinationAction {
 
     public void setValue(SIGNAL value) {
         this.value = value;
-    }
-
-    public Combination getCombination() {
-        return combination;
-    }
-
-    public void setCombination(Combination combination) {
-        this.combination = combination;
     }
 }

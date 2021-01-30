@@ -2,6 +2,7 @@ package fr.unice.polytech.groupB.arduinoml.dsl;
 
 import java.util.Map;
 
+import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.Condition;
 import groovy.lang.Binding;
 import groovy.lang.Script;
 
@@ -34,14 +35,6 @@ public class ArduinoMLBinding extends Binding {
 	}
 	
 	public Object getVariable(String name) {
-//		if ("and".equals(name)) {
-//			model.setC Operator.AND);
-//			return script;
-//		}
-//		if ("or".equals(name)) {
-//			model.setOperator(Operator.OR);
-//			return script;
-//		}
 		return super.getVariable(name);
 	}
 	

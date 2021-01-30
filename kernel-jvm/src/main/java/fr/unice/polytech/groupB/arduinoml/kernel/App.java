@@ -3,7 +3,6 @@ package fr.unice.polytech.groupB.arduinoml.kernel;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.CombinationAction;
 import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.State;
 import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.Transition;
 import fr.unice.polytech.groupB.arduinoml.kernel.generator.Visitable;
