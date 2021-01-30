@@ -33,6 +33,8 @@ public class ArduinoMLModel {
         this.transitions = new ArrayList<Transition>();
 //        this.conditionsList = new ArrayList<ConditionAction>();
         this.binding = binding;
+        this.binding.setVariable("currentState", 0);
+
     }
 //
 //    public State getTempState1() {
@@ -80,6 +82,10 @@ public class ArduinoMLModel {
         State state = new State();
         state.setName(name);
         state.setActions(actions);
+        int id = (int) this.binding.getVariable("currentState");
+        state.setId(++id);
+        this.binding.setVariable("currentState", id);
+
         this.states.add(state);
         this.binding.setVariable(name, state);
     }

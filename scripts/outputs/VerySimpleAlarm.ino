@@ -1,35 +1,49 @@
 // Wiring code generated from an ArduinoML model
 // Application name: Very Simple Alarm
 
-void state_on() {
-  digitalWrite(10,HIGH);
-  digitalWrite(11,HIGH);
-  delay(10);
-  if(digitalRead(9) == LOW ) {
-    state_off();
-  } else {
-    state_on();
-  }
-}
-
-void state_off() {
-  digitalWrite(10,LOW);
-  digitalWrite(11,LOW);
-  delay(10);
-  if(digitalRead(9) == HIGH ) {
-    state_on();
-  } else {
-    state_off();
-  }
-}
-
 void setup(){
-  pinMode(9, INPUT);  // button [Sensor]
-  pinMode(10, OUTPUT); // led [Actuator]
-  pinMode(11, OUTPUT); // buzzer [Actuator]
+  pinMode(4, INPUT);  // button [Sensor]
+  pinMode(8, OUTPUT); // led [Actuator]
+  pinMode(12, OUTPUT); // buzzer [Actuator]
 }
 
+long time = 0; long debounce = 200;
+
+int state_on() {
+  digitalWrite(8,HIGH);
+  digitalWrite(12,HIGH);
+  boolean guard = millis() - time > debounce;
+  if(digitalRead(4) == 0 && guard) {
+    time = millis();
+    return 2;
+  } else {
+    return 1;
+  }
+}
+
+int state_off() {
+  digitalWrite(8,LOW);
+  digitalWrite(12,LOW);
+  boolean guard = millis() - time > debounce;
+  if(digitalRead(4) == 1 && guard) {
+    time = millis();
+    return 1;
+  } else {
+    return 2;
+  }
+}
+
+int state = 2;
 void loop() {
-  state_off();
+  switch(state) {
+    case 1:
+      state = state_on();
+      break;
+    case 2:
+      state = state_off();
+      break;
+    default:
+      break;
+  }
 }
 
