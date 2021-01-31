@@ -17,6 +17,7 @@ public class ArduinoMLModel {
     private List<Transition> transitions;
     private State initialState;
     private Tonality tonality;
+    private boolean interrupt = false;
 
 //    private State tempState1;
 //    private State tempState2;
@@ -49,6 +50,14 @@ public class ArduinoMLModel {
     }
 //        return tempState1;
 //    }
+
+    public boolean isInterrupt() {
+        return interrupt;
+    }
+
+    public void setInterrupt(boolean interrupt) {
+        this.interrupt = interrupt;
+    }
 
 //    public void setTempState1(State tempState1) {
 //        this.tempState1 = tempState1;
@@ -117,6 +126,14 @@ public class ArduinoMLModel {
         transition.setFrom(from);
         transition.setConditionActions(conditionActions);
         transition.setCondition(condition);
+        this.transitions.add(transition);
+    }
+
+    public void createTransitionTemporal(State from, State to, int time) {
+        TemporalTransition transition = new TemporalTransition();
+        transition.setNext(to);
+        transition.setFrom(from);
+        transition.setTime(time);
         this.transitions.add(transition);
     }
 
@@ -199,6 +216,7 @@ public class ArduinoMLModel {
         app.setStates(this.states);
         app.setTransitions(this.transitions);
         app.setInitial(this.initialState);
+        app.setInterrupt(this.interrupt);
         app.setTonality(t);
         Visitor codeGenerator = new ToWiring();
         app.accept(codeGenerator);
