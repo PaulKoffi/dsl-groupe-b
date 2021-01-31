@@ -11,7 +11,7 @@ interrupt on
 
 
 from on to off when button becomes high
-from on to off after 2000 ms
+from on temporalTo off after 2000 ms
 from off to on when button becomes high
 
 export "Signaling Stuff By Using Song"
