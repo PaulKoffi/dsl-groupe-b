@@ -60,26 +60,23 @@ public class ToWiring extends Visitor<StringBuffer> {
         }
         wln("void setup(){");
         if (interrupt){
-            wln("   attachInterrupt( digitalPinToInterrupt(2), gotToStateOff, FALLING );");
+            wln("  attachInterrupt( digitalPinToInterrupt(2), gotToStateOff, FALLING );");
         }
         if (tonality){
             wln("Serial.begin(9600);");
 
         }
         for (Brick brick : app.getBricks()) {
-//            System.out.println("ici");
             brick.accept(this);
         }
         wln("}\n");
 
         if (interrupt){
-            wln("void gotToStateOff(){\n");
-            wln(String.format("   change = %d;\n", INT_MAX));
+            wln("void gotToStateOff(){");
+            wln(String.format(" change = %d;", INT_MAX));
             wln("}\n");
         }
 		wln("long time = 0; long debounce = 200;\n");
-
-
 
         for (State state : app.getStates()) {
             state.accept(this);
@@ -87,17 +84,13 @@ public class ToWiring extends Visitor<StringBuffer> {
                 if (transition.getFrom().getName().equals(state.getName()) && !transition.isTemporal()) {
                     transition.accept(this);
                 }
-
             }
             nbState+=1;
-
             wln("}\n");
         }
 
         //second pass, setup and loop
         context.put("pass",PASS.TWO);
-
-
 
         if (app.getInitial() != null)
             wln(String.format("int state = %d;", nbState));
@@ -119,29 +112,16 @@ public class ToWiring extends Visitor<StringBuffer> {
 
     @Override
     public void visit(Actuator actuator) {
-//        if(context.get("pass") == PASS.ONE) {
-//            return;
-//        }
-//        if(context.get("pass") == PASS.TWO) {
             wln(String.format("  pinMode(%d, OUTPUT); // %s [Actuator]", actuator.getPin(), actuator.getName()));
-//        }
     }
 
     @Override
     public void visit(Sensor sensor) {
-//        if(context.get("pass") == PASS.ONE) {
-//            return;
-//        }
-//        if(context.get("pass") == PASS.TWO) {
             wln(String.format("  pinMode(%d, INPUT);  // %s [Sensor]", sensor.getPin(), sensor.getName()));
-//        }
     }
 
     @Override
     public void visit(State state) {
-
-//        System.out.println(state.getName());
-//		System.out.println(state.getTransition());
         wln(String.format("int state_%s() {", state.getName()));
         if(tonality && state.isTune()){
             wln(String.format("      tone(buzzerAlarm,400,100);"));
@@ -159,13 +139,8 @@ public class ToWiring extends Visitor<StringBuffer> {
         if(tonality && state.isTune()){
             wln(String.format("delay(500);"));
             wln(String.format("tone(buzzerAlarm,450,500);"));
-
         }
         context.put(CURRENT_STATE, state);
-
-//		state.getTransition().accept(this);
-
-
     }
 
     @Override
@@ -194,12 +169,6 @@ public class ToWiring extends Visitor<StringBuffer> {
                     temporalTransition.getFrom().getName().equals(transition.getFrom().getName())){
                 temporal=true;
                 temporalTransition.accept(this);
-//                wln(String.format("    while( change < %d) {", temporalTransition.getTime()));
-//                wln("    delay(1);");
-//                wln("    change ++;");
-//                wln("    } ");
-//                wln("    change = 0;");
-//                wln("  }");
             }
         }
         if(temporal){
@@ -208,18 +177,12 @@ public class ToWiring extends Visitor<StringBuffer> {
         else {
             wln(String.format("    return %d;", transition.getFrom().getId()));
         }
-
         wln("  }");
     }
 
     @Override
     public void visit(Action action) {
-//        if(context.get("pass") == PASS.ONE) {
-//            return;
-//        }
-//        if(context.get("pass") == PASS.TWO) {
             wln(String.format("  digitalWrite(%d,%s);", action.getActuator().getPin(), action.getValue()));
-//        }
     }
 
 
@@ -230,6 +193,5 @@ public class ToWiring extends Visitor<StringBuffer> {
         wln("       change ++;");
         wln("    } ");
         wln("    change = 0;");
-//        wln("  }");
     }
 }
