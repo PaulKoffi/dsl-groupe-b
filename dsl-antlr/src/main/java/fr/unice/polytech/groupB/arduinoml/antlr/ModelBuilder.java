@@ -98,6 +98,7 @@ public class ModelBuilder extends ArduinomlBaseListener {
         State local = new State();
         local.setName(ctx.name.getText().substring(avoidSpecials,ctx.name.getText().length()-avoidSpecials));
         this.currentState = local;
+        local.setTune(Tonality.valueOf(ctx.tune.getText().toUpperCase()).equals(Tonality.ON));
         local.setId(stateId);
         this.states.put(local.getName(), local);
         stateId++;
@@ -159,6 +160,11 @@ public class ModelBuilder extends ArduinomlBaseListener {
     @Override
     public void enterInitial(ArduinomlParser.InitialContext ctx) {
         this.theApp.setInitial(states.get(ctx.starting.getText()));
+    }
+
+    @Override
+    public void enterTonality(ArduinomlParser.TonalityContext ctx){
+        this.theApp.setTonality(Tonality.valueOf(ctx.value.getText().toUpperCase()).equals(Tonality.ON));
     }
 
 
