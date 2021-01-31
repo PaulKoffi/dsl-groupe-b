@@ -44,6 +44,7 @@ public class ModelBuilder extends ArduinomlBaseListener {
         private State from;
         private List<ConditionAction> conditionActions=new ArrayList<>();
         private Condition condition = Condition.NULL;
+        private int time = 0;
     }
 
     int stateId = 1;
@@ -98,7 +99,10 @@ public class ModelBuilder extends ArduinomlBaseListener {
         State local = new State();
         local.setName(ctx.name.getText().substring(avoidSpecials,ctx.name.getText().length()-avoidSpecials));
         this.currentState = local;
-        local.setTune(Tonality.valueOf(ctx.tune.getText().toUpperCase()).equals(Tonality.ON));
+        if (ctx.tune!=null){
+            local.setTune(Tonality.valueOf(ctx.tune.getText().toUpperCase()).equals(Tonality.ON));
+        }
+
         local.setId(stateId);
         this.states.put(local.getName(), local);
         stateId++;
@@ -167,6 +171,20 @@ public class ModelBuilder extends ArduinomlBaseListener {
         this.theApp.setTonality(Tonality.valueOf(ctx.value.getText().toUpperCase()).equals(Tonality.ON));
     }
 
+    @Override
+    public void enterInterrupt(ArduinomlParser.InterruptContext ctx){
+        this.theApp.setInterrupt(Tonality.valueOf(ctx.value.getText().toUpperCase()).equals(Tonality.ON));
+    }
+
+    @Override
+    public void enterTemporal(ArduinomlParser.TemporalContext ctx){
+        TemporalTransition temporalTransition = new TemporalTransition();
+        temporalTransition.setNext(states.get(ctx.end.getText()));
+        temporalTransition.setFrom(states.get(ctx.begin.getText()));
+        temporalTransition.setTime(Integer.parseInt(ctx.time.getText()));
+        theApp.getTransitions().add(temporalTransition);
+
+    }
 
 }
 
