@@ -24,6 +24,11 @@ abstract class ArduinoMLBasescript extends Script {
         ((ArduinoMLBinding) this.getBinding()).getGroovuinoMLModel().setTonality(tonality)
     }
 
+    def interrupt(Tonality tonality) {
+        boolean t  = (tonality == Tonality.ON);
+        ((ArduinoMLBinding) this.getBinding()).getGroovuinoMLModel().setInterrupt(t)
+    }
+
     // state "name" means actuator becomes signal [and actuator becomes signal]*n
     def state(String name) {
         List<Action> actions = new ArrayList<Action>()
@@ -101,7 +106,13 @@ abstract class ArduinoMLBasescript extends Script {
                     ((ArduinoMLBinding) this.getBinding()).getGroovuinoMLModel().createTransition2(state1, state2, conditionActionArrayList, Condition.NULL)
                 }]
             }]
-        }]
+        },
+         temporalTo : { state3 ->
+             [after : { n ->
+                 ((ArduinoMLBinding) this.getBinding()).getGroovuinoMLModel().createTransitionTemporal(state1, state3, n)
+                 [ms : {}]
+             }]
+         }]
     }
 
     // initial state
