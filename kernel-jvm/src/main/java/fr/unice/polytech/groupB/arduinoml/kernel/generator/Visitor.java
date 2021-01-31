@@ -1,6 +1,7 @@
 package fr.unice.polytech.groupB.arduinoml.kernel.generator;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import fr.unice.polytech.groupB.arduinoml.kernel.App;
@@ -13,6 +14,7 @@ public abstract class Visitor<T> {
 
 	public abstract void visit(State state);
 	public abstract void visit(Transition transition);
+	public abstract void visit(TemporalTransition temporalTransition);
 	public abstract void visit(Action action);
 
 	public abstract void visit(Actuator actuator);

@@ -5,9 +5,11 @@ grammar Arduinoml;
  ** Parser rules **
  ******************/
 
-root            :    bricks tonality states initial transitions declaration EOF;
+root            :    bricks tonality? states initial interrupt? transitions declaration EOF;
 
 tonality        :   'tonality' value=IDENTIFIER;
+
+interrupt        :   'interrupt' value=IDENTIFIER;
 
 declaration     :   'export' name=APPLLICATION;
 
@@ -25,7 +27,8 @@ initial :  'initial' starting=IDENTIFIER;
 
 
 
-transitions     :   transition+;
+transitions     :   (transition|temporal)+;
+    temporal    :   ('from'|'fromC')  begin=IDENTIFIER 'temporalTo' end=IDENTIFIER 'after' time=TIME 'ms';
     transition  :   ('from'|'fromC') begin=IDENTIFIER 'to' end=IDENTIFIER  combinationAction (',' combination=OPERATOR combinationAction )?;
     combinationAction:  'when' source=IDENTIFIER 'becomes' value=SIGNAL;
 
@@ -39,6 +42,7 @@ OPERATOR        :   'and' | 'or' ;
 SIGNAL          :   'high' | 'low' ;
 
 PORT_NUMBER     :   [1-9] | '10' |'11' | '12';
+TIME          :   [1-9] [0-9]+;
 DEFINITION      :   '"' LOWERCASE (LOWERCASE|UPPERCASE)+ NUMBER? '"';
 IDENTIFIER      :   LOWERCASE (LOWERCASE|UPPERCASE)+ NUMBER?;
 

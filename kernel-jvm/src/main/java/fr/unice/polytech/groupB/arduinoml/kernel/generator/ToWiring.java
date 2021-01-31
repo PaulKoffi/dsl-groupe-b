@@ -4,6 +4,9 @@ import fr.unice.polytech.groupB.arduinoml.kernel.App;
 import fr.unice.polytech.groupB.arduinoml.kernel.behavioral.*;
 import fr.unice.polytech.groupB.arduinoml.kernel.structural.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Quick and dirty visitor to support the generation of Wiring code
  */
@@ -12,6 +15,9 @@ public class ToWiring extends Visitor<StringBuffer> {
     private final static String CURRENT_STATE = "current_state";
     private int nbState = 0;
     private boolean tonality =false;
+    private boolean interrupt =false;
+    private int INT_MAX= 32000;
+    private ArrayList<TemporalTransition> temporalTransitions = new ArrayList<>();
 
     public ToWiring() {
         this.result = new StringBuffer();
@@ -27,10 +33,21 @@ public class ToWiring extends Visitor<StringBuffer> {
 
     @Override
     public void visit(App app) {
+        for (Transition transition: app.getTransitions()   ) {
+            if (transition.isTemporal()){
+                TemporalTransition temporalTransition = (TemporalTransition) transition;
+                temporalTransitions.add(temporalTransition);
+            }
+
+        }
+        interrupt=app.isInterrupt();
         context.put("pass", PASS.ONE);
         wln("// Wiring code generated from an ArduinoML model");
         wln(String.format("// Application name: %s\n", app.getName()));
         this.tonality= app.getTonality();
+        if (temporalTransitions.size()>0){
+            wln("volatile int change =0;");
+        }
         if (tonality) {
             int buzzerAlarm = 0;
             for (Brick brick : app.getBricks()) {
@@ -42,22 +59,35 @@ public class ToWiring extends Visitor<StringBuffer> {
 
         }
         wln("void setup(){");
+        if (interrupt){
+            wln("   attachInterrupt( digitalPinToInterrupt(2), gotToStateOff, FALLING );");
+        }
         if (tonality){
             wln("Serial.begin(9600);");
+
         }
         for (Brick brick : app.getBricks()) {
 //            System.out.println("ici");
             brick.accept(this);
         }
         wln("}\n");
+
+        if (interrupt){
+            wln("void gotToStateOff(){\n");
+            wln(String.format("   change = %d;\n", INT_MAX));
+            wln("}\n");
+        }
 		wln("long time = 0; long debounce = 200;\n");
+
+
 
         for (State state : app.getStates()) {
             state.accept(this);
             for (Transition transition : app.getTransitions()) {
-                if (transition.getFrom().getName().equals(state.getName())) {
+                if (transition.getFrom().getName().equals(state.getName()) && !transition.isTemporal()) {
                     transition.accept(this);
                 }
+
             }
             nbState+=1;
 
@@ -153,12 +183,32 @@ public class ToWiring extends Visitor<StringBuffer> {
 
         }
 
-        wln(String.format("&& guard) {"));
+        boolean temporal =false;
+        wln("&& guard) {");
         wln("    time = millis();");
 
         wln(String.format("    return %d;", transition.getNext().getId()));
         wln("  } else {");
-        wln(String.format("    return %d;", transition.getFrom().getId()));
+        for (TemporalTransition temporalTransition:temporalTransitions ) {
+            if(temporalTransition.getNext().getName().equals(transition.getNext().getName()) &&
+                    temporalTransition.getFrom().getName().equals(transition.getFrom().getName())){
+                temporal=true;
+                temporalTransition.accept(this);
+//                wln(String.format("    while( change < %d) {", temporalTransition.getTime()));
+//                wln("    delay(1);");
+//                wln("    change ++;");
+//                wln("    } ");
+//                wln("    change = 0;");
+//                wln("  }");
+            }
+        }
+        if(temporal){
+            wln(String.format("    return %d;", transition.getNext().getId()));
+        }
+        else {
+            wln(String.format("    return %d;", transition.getFrom().getId()));
+        }
+
         wln("  }");
     }
 
@@ -170,5 +220,16 @@ public class ToWiring extends Visitor<StringBuffer> {
 //        if(context.get("pass") == PASS.TWO) {
             wln(String.format("  digitalWrite(%d,%s);", action.getActuator().getPin(), action.getValue()));
 //        }
+    }
+
+
+    @Override
+    public void visit(TemporalTransition temporalTransition){
+        wln(String.format("    while( change < %d) {", temporalTransition.getTime()));
+        wln("       delay(1);");
+        wln("       change ++;");
+        wln("    } ");
+        wln("    change = 0;");
+//        wln("  }");
     }
 }

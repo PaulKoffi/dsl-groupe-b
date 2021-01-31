@@ -17,6 +17,17 @@ public class App implements NamedElement, Visitable {
 	private List<Transition> transitions= new ArrayList<Transition>();
 	private State initial;
 	private Boolean tonality= false;
+	private boolean interrupt = false;
+
+	public boolean isInterrupt() {
+		return interrupt;
+	}
+
+	public void setInterrupt(boolean interrupt) {
+		this.interrupt = interrupt;
+	}
+
+
 
 	public Boolean getTonality() {
 		return tonality;
