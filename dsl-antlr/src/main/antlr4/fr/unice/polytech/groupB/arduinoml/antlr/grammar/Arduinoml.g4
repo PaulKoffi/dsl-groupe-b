@@ -28,7 +28,7 @@ initial :  'initial' starting=IDENTIFIER;
 
 
 transitions     :   (transition|temporal)+;
-    temporal    :   ('from'|'fromC')  begin=IDENTIFIER 'to' end=IDENTIFIER 'after' time=TIME 'ms';
+    temporal    :   ('from'|'fromC')  begin=IDENTIFIER 'temporalTo' end=IDENTIFIER 'after' time=TIME 'ms';
     transition  :   ('from'|'fromC') begin=IDENTIFIER 'to' end=IDENTIFIER  combinationAction (',' combination=OPERATOR combinationAction )?;
     combinationAction:  'when' source=IDENTIFIER 'becomes' value=SIGNAL;
 
