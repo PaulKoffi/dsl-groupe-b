@@ -16,6 +16,15 @@ public class App implements NamedElement, Visitable {
 	private List<State> states = new ArrayList<State>();
 	private List<Transition> transitions= new ArrayList<Transition>();
 	private State initial;
+	private Boolean tonality= false;
+
+	public Boolean getTonality() {
+		return tonality;
+	}
+
+	public void setTonality(Boolean tonality) {
+		this.tonality = tonality;
+	}
 
 	@Override
 	public String getName() {

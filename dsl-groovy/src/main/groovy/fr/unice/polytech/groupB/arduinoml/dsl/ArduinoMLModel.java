@@ -16,6 +16,7 @@ public class ArduinoMLModel {
     private List<State> states;
     private List<Transition> transitions;
     private State initialState;
+    private Tonality tonality;
 
 //    private State tempState1;
 //    private State tempState2;
@@ -38,6 +39,14 @@ public class ArduinoMLModel {
     }
 //
 //    public State getTempState1() {
+
+    public Tonality getTonality() {
+        return tonality;
+    }
+
+    public void setTonality(Tonality tonality) {
+        this.tonality = tonality;
+    }
 //        return tempState1;
 //    }
 
@@ -78,11 +87,12 @@ public class ArduinoMLModel {
         this.binding.setVariable(name, actuator);
     }
 
-    public void createState(String name, List<Action> actions) {
+    public void createState(String name, List<Action> actions, boolean tonality) {
         State state = new State();
         state.setName(name);
         state.setActions(actions);
         int id = (int) this.binding.getVariable("currentState");
+        state.setTune(tonality);
         state.setId(++id);
         this.binding.setVariable("currentState", id);
 
@@ -183,11 +193,13 @@ public class ArduinoMLModel {
     @SuppressWarnings("rawtypes")
     public Object generateCode(String appName) {
         App app = new App();
+        boolean t  = (tonality == Tonality.ON);
         app.setName(appName);
         app.setBricks(this.bricks);
         app.setStates(this.states);
         app.setTransitions(this.transitions);
         app.setInitial(this.initialState);
+        app.setTonality(t);
         Visitor codeGenerator = new ToWiring();
         app.accept(codeGenerator);
         return codeGenerator.getResult();

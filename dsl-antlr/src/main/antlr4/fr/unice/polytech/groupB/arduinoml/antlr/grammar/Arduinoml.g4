@@ -5,7 +5,9 @@ grammar Arduinoml;
  ** Parser rules **
  ******************/
 
-root            :    bricks states initial transitions declaration EOF;
+root            :    bricks tonality states initial transitions declaration EOF;
+
+tonality        :   'tonality' value=IDENTIFIER;
 
 declaration     :   'export' name=APPLLICATION;
 
@@ -15,7 +17,7 @@ bricks          :   (sensor|actuator)+;
     location    :   id=DEFINITION 'pin' port=PORT_NUMBER;
 
 states          :   state+;
-    state       :   'state'  name=DEFINITION  'means' (action (operator= OPERATOR)?)+  ;
+    state       :   ('tune' tune=IDENTIFIER)? 'state'  name=DEFINITION  'means' (action (operator= OPERATOR)?)+  ;
     action      :   receiver=IDENTIFIER 'becomes' value=SIGNAL;
 
 

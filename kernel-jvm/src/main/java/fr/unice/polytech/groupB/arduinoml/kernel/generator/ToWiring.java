@@ -11,6 +11,7 @@ public class ToWiring extends Visitor<StringBuffer> {
     enum PASS {ONE, TWO}
     private final static String CURRENT_STATE = "current_state";
     private int nbState = 0;
+    private boolean tonality =false;
 
     public ToWiring() {
         this.result = new StringBuffer();
@@ -29,8 +30,21 @@ public class ToWiring extends Visitor<StringBuffer> {
         context.put("pass", PASS.ONE);
         wln("// Wiring code generated from an ArduinoML model");
         wln(String.format("// Application name: %s\n", app.getName()));
+        this.tonality= app.getTonality();
+        if (tonality) {
+            int buzzerAlarm = 0;
+            for (Brick brick : app.getBricks()) {
+                if (brick.getName().equals("buzzerAlarm")) {
+                    buzzerAlarm = brick.getPin();
+                }
+            }
+            wln(String.format("int buzzerAlarm = %d;\n", buzzerAlarm));
 
+        }
         wln("void setup(){");
+        if (tonality){
+            wln("Serial.begin(9600);");
+        }
         for (Brick brick : app.getBricks()) {
 //            System.out.println("ici");
             brick.accept(this);
@@ -46,6 +60,7 @@ public class ToWiring extends Visitor<StringBuffer> {
                 }
             }
             nbState+=1;
+
             wln("}\n");
         }
 
@@ -94,17 +109,33 @@ public class ToWiring extends Visitor<StringBuffer> {
 
     @Override
     public void visit(State state) {
+
 //        System.out.println(state.getName());
 //		System.out.println(state.getTransition());
         wln(String.format("int state_%s() {", state.getName()));
+        if(tonality && state.isTune()){
+            wln(String.format("      tone(buzzerAlarm,400,100);"));
+            wln(String.format("      delay(100);" ));
+            wln(String.format("      tone(buzzerAlarm,400,100);" ));
+            wln(String.format("      delay(100);" ));
+            wln(String.format("      tone(buzzerAlarm,400,100);" ));
+            wln(String.format("      delay(100);"));
+        }
         for (Action action : state.getActions()) {
             action.accept(this);
         }
         wln("  boolean guard = millis() - time > debounce;");
 
+        if(tonality && state.isTune()){
+            wln(String.format("delay(500);"));
+            wln(String.format("tone(buzzerAlarm,450,500);"));
+
+        }
         context.put(CURRENT_STATE, state);
 
 //		state.getTransition().accept(this);
+
+
     }
 
     @Override
@@ -124,6 +155,7 @@ public class ToWiring extends Visitor<StringBuffer> {
 
         wln(String.format("&& guard) {"));
         wln("    time = millis();");
+
         wln(String.format("    return %d;", transition.getNext().getId()));
         wln("  } else {");
         wln(String.format("    return %d;", transition.getFrom().getId()));
