@@ -1,5 +1,3 @@
-
-
 sensor "button" pin 2
 actuator "led" pin 3
 actuator "buzzerAlarm" pin 9
