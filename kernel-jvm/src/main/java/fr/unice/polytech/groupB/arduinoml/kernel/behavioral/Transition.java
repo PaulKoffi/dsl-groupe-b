@@ -53,4 +53,8 @@ public class Transition implements Visitable {
     public void setCondition(Condition condition) {
         this.condition = condition;
     }
+
+    public boolean isTemporal(){
+        return false;
+    }
 }
