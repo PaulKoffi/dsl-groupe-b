@@ -5,18 +5,25 @@
     * DJEKINOU Paul-Marie
     * KOFFI Paul
     * NABAGOU Djotiham
-* Version actuelle : Basic scenarios + Signaling stuff by using sound + Temporal transitions
+* Version actuelle : `Basic scenarios + Signaling stuff by using sound + Temporal transitions`
 * Livrables :
     * [delivery-first](https://github.com/pns-si5-soa/box-20-21-team-f/releases/tag/delivery-first) : Première livraison
 
-## <img src="https://icon-icons.com/icons2/1147/PNG/64/1486486316-arrow-film-movie-play-player-start-video_81236.png"/>  Démos rapide de nos fonctionnalités
-* `Very Simple Alarm` : [ici](https://drive.google.com/file/d/19RyqV8oVMZ8SNIQ71oXbLt3mdt5Y3ou1/view?usp=sharing)
-* `Dual-check alarm` :  [ici](https://drive.google.com/file/d/1m-97sSkBXMuvHhR0sY43K60d9z-EbGZW/view?usp=sharing)
-* `State-based alarm`  : [ici](https://drive.google.com/file/d/1XQG8X36FR4e23ONn1-RCl5AVm3z95tvY/view?usp=sharing)
-* `Multi-state alarm` : [ici](https://drive.google.com/file/d/1Gk-Z64GswuqCTPo54cjSjKeaVHRz1ffB/view?usp=sharing)
-* `Signaling stuff by using sounds` : [ici](https://drive.google.com/file/d/1lv3JnBRAOmwbYhtBqW3b_fPNmovczSaQ/view?usp=sharing)
-* `Temporal transitions` : [ici](https://drive.google.com/file/d/1I46yfE0j3oK-w-emfjAi7bt3pc_IjSZB/view?usp=sharing)
+## <img src="https://icon-icons.com/icons2/1147/PNG/64/1486486316-arrow-film-movie-play-player-start-video_81236.png"/>  Démos rapide (30s) de nos fonctionnalités
+* `Very Simple Alarm` : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 👉 [ici](https://drive.google.com/file/d/19RyqV8oVMZ8SNIQ71oXbLt3mdt5Y3ou1/view?usp=sharing)
+* `Dual-check alarm` :  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;👉 [ici](https://drive.google.com/file/d/1m-97sSkBXMuvHhR0sY43K60d9z-EbGZW/view?usp=sharing)
+* `State-based alarm`  : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;👉 [ici](https://drive.google.com/file/d/1XQG8X36FR4e23ONn1-RCl5AVm3z95tvY/view?usp=sharing)
+* `Multi-state alarm` : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;👉 [ici](https://drive.google.com/file/d/1Gk-Z64GswuqCTPo54cjSjKeaVHRz1ffB/view?usp=sharing)
+* `Signaling stuff by using sounds` : &nbsp;👉 [ici](https://drive.google.com/file/d/1lv3JnBRAOmwbYhtBqW3b_fPNmovczSaQ/view?usp=sharing)
+* `Temporal transitions` : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;👉 [ici](https://drive.google.com/file/d/1I46yfE0j3oK-w-emfjAi7bt3pc_IjSZB/view?usp=sharing)
 
+## <img src="https://icon-icons.com/icons2/621/PNG/64/link-symbol-of-two-chains-links-linked_icon-icons.com_56928.png"/>  Liens des circuits de test TinkerCad
+* `Very Simple Alarm` : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 👉 [ici](https://www.tinkercad.com/things/htXg7yBnZFz-copy-of-two-leds-and-two-push-buttons/editel?sharecode=1g8OGSQbYqB41tXgSGBLVfwz28pJeCfvBTyhICYf13s)
+* `Dual-check alarm` :  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;👉 [ici](https://www.tinkercad.com/things/4lhIm8zUnMF-copy-of-two-leds-and-two-push-buttons/editel?sharecode=pQg9-1DgpD30WrlqKO32aspoOCU6VFA8iE8xtbYlAAc&sharecode=pQg9-1DgpD30WrlqKO32aspoOCU6VFA8iE8xtbYlAAc)
+* `State-based alarm`  : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;👉 [ici](https://www.tinkercad.com/things/cK7Df9GFPSc-copy-of-two-leds-and-two-push-buttons/editel?sharecode=goajfUehBalWURv0YFDR4BtOZ9ESfxFJcHRQ4aZOqkE)
+* `Multi-state alarm` : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;👉 [ici](https://www.tinkercad.com/things/6QrnopHUtKE-copy-of-two-leds-and-two-push-buttons/editel?sharecode=mxiFKdLX44aTZad5Fyg7G0CQEIZNXnTGS1HG9AsouGI)
+* `Signaling stuff by using sounds` :&nbsp;&nbsp;👉 [ici](https://www.tinkercad.com/things/87cp8tDoNOL-copy-of-arduino-buzzer-with-led-and-push-button/editel?sharecode=LNRahYBkQvf93IXNxhe96SDtxphY7LEBBbPwQzFybOk&sharecode=LNRahYBkQvf93IXNxhe96SDtxphY7LEBBbPwQzFybOk)
+* `Temporal transitions` : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;👉 [ici](https://www.tinkercad.com/things/gkz5F2JcsD0-copy-of-two-leds-and-two-push-buttons/editel?sharecode=i8-HGkg59kgW6_H_im0g-rjRqh1U1Zj6vXHdlO4I4dI)
 
 ## <img src="https://icon-icons.com/icons2/933/PNG/64/help-button-speech-bubble-with-question-mark_icon-icons.com_72707.png"/>  Comment utiliser ce repository
 
