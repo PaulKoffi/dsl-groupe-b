@@ -20,8 +20,6 @@ import java.nio.file.Paths;
 public class Main {
 
     public static void main (String[] args) throws Exception {
-        System.out.println("\n\nRunning the ANTLR compiler for ArduinoML");
-
         CharStream stream = getCharStream(args);
         App theApp = buildModel(stream);
         exportToCode(theApp);
@@ -32,7 +30,6 @@ public class Main {
         if (args.length < 1)
             throw new RuntimeException("no input file");
         Path input = Paths.get(new File(args[0]).toURI());
-        System.out.println("Using input file: " + input);
         return CharStreams.fromPath(input);
     }
 
