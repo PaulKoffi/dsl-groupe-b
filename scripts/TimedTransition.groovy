@@ -13,4 +13,4 @@ from on to off when button becomes high
 from on temporalTo off after 2000 ms
 from off to on when button becomes high
 
-export "Signaling Stuff By Using Song"
+export "Timed Transition"

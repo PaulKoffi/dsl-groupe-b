@@ -1,17 +1,15 @@
 // Wiring code generated from an ArduinoML model
-// Application name: Signaling Stuff By Using Song
+// Application name: Timed Transition
 
 volatile int change =0;
 void setup(){
-   attachInterrupt( digitalPinToInterrupt(2), gotToStateOff, FALLING );
+  attachInterrupt( digitalPinToInterrupt(2), gotToStateOff, FALLING );
   pinMode(4, INPUT);  // button [Sensor]
   pinMode(12, OUTPUT); // led [Actuator]
 }
 
 void gotToStateOff(){
-
-   change = 32000;
-
+ change = 32000;
 }
 
 long time = 0; long debounce = 200;
