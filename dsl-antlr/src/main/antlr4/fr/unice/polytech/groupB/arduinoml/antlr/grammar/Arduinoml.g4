@@ -41,7 +41,7 @@ transitions     :   (transition|temporal)+;
 OPERATOR        :   'and' | 'or' ;
 SIGNAL          :   'high' | 'low' ;
 
-PORT_NUMBER     :   [1-9] | '10' |'11' | '12';
+PORT_NUMBER     :   [1-9] | '10' |'11' | '12'| '13';
 TIME          :   [1-9] [0-9]+;
 DEFINITION      :   '"' LOWERCASE (LOWERCASE|UPPERCASE)+ NUMBER? '"';
 IDENTIFIER      :   LOWERCASE (LOWERCASE|UPPERCASE)+ NUMBER?;

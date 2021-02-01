@@ -1,42 +1,28 @@
-
-
-Running the ANTLR compiler for ArduinoML
-Using input file: C:\Users\Florian\Documents\AL\dsl\dsl-groupe-b\scripts\TimedTransition.groovy
 // Wiring code generated from an ArduinoML model
-// Application name: "Signaling Stuff By Using Song"
+// Application name: "Very Simple Alarm"
 
-volatile int change =0;
 void setup(){
-   attachInterrupt( digitalPinToInterrupt(2), gotToStateOff, FALLING );
   pinMode(4, INPUT);  // button [Sensor]
-  pinMode(12, OUTPUT); // led [Actuator]
-}
-
-void gotToStateOff(){
-
-   change = 32000;
-
+  pinMode(8, OUTPUT); // led [Actuator]
+  pinMode(12, OUTPUT); // buzzer [Actuator]
 }
 
 long time = 0; long debounce = 200;
 
 int state_on() {
+  digitalWrite(8,HIGH);
   digitalWrite(12,HIGH);
   boolean guard = millis() - time > debounce;
-  if(digitalRead(4) == 1 && guard) {
+  if(digitalRead(4) == 0 && guard) {
     time = millis();
     return 2;
   } else {
-    while( change < 2000) {
-       delay(1);
-       change ++;
-    } 
-    change = 0;
-    return 2;
+    return 1;
   }
 }
 
 int state_off() {
+  digitalWrite(8,LOW);
   digitalWrite(12,LOW);
   boolean guard = millis() - time > debounce;
   if(digitalRead(4) == 1 && guard) {
