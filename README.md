@@ -20,19 +20,13 @@
 
 ## <img src="https://icon-icons.com/icons2/933/PNG/64/help-button-speech-bubble-with-question-mark_icon-icons.com_72707.png"/>  Comment utiliser ce repository
 
-    * La branche `main` (la branche par défaut) représente la dernière version stable du système.
-    * La branche `external` représente le système en cours de développement spécifique au DSL externe en Antlr.
-    * La branche `feature/internalDSLab` représente le système en cours de développement spécifique au DSL interne en groovy.
+* La branche `main` (la branche par défaut) représente la dernière version stable du système.
+* La branche `external` représente le système en cours de développement spécifique au DSL externe en Antlr.
+* La branche `feature/internalDSLab` représente le système en cours de développement spécifique au DSL interne en groovy.
 
 ## <img src="https://icon-icons.com/icons2/1369/PNG/64/-get-app_90101.png"/>  Récupération du projet
 
   Effectuer un clone classique du projet en faisant ```git clone https://github.com/wak-nda/dsl-groupe-b.git``` ou en récupérant le zip depuis cette page.
-
-## <img src="https://icon-icons.com/icons2/1145/PNG/64/codeoutlinedprogrammingsigns_81143.png"/>  Pile Technologique
-* Maven
-* Groovy
-* Antlr
-
 
 ## <img src="https://icon-icons.com/icons2/7/PNG/64/runbuild_1068.png"/>  Compilation
 1 - Effectuez à la racine du projet `mvn clean install`  
@@ -54,3 +48,8 @@
 
 ### Syntaxe
 La syntaxe du DSL est la suivante : 
+
+## <img src="https://icon-icons.com/icons2/1145/PNG/64/codeoutlinedprogrammingsigns_81143.png"/>  Pile Technologique
+  <p align="center">
+    <img src="./docs/img/techno.jpg"/>
+  </p>
