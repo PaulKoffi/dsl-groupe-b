@@ -1,6 +1,4 @@
 package fr.unice.polytech.groupB.arduinoml.kernel.behavioral;
-import fr.unice.polytech.groupB.arduinoml.kernel.generator.Visitable;
-import fr.unice.polytech.groupB.arduinoml.kernel.generator.Visitor;
 import fr.unice.polytech.groupB.arduinoml.kernel.structural.SIGNAL;
 import fr.unice.polytech.groupB.arduinoml.kernel.structural.Sensor;
 
