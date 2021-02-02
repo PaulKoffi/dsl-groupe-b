@@ -5,7 +5,7 @@
     * DJEKINOU Paul-Marie
     * KOFFI Paul
     * NABAGOU Djotiham
-* Version actuelle : `Basic scenarios + Signaling stuff by using sound + Temporal transitions [+ reset to initial state for temporal transitions]`
+* Version actuelle : `Basic scenarios + Signaling stuff by using sound + Temporal transitions` <kbd>+ reset to initial state for temporal transitions]</kbd>
 * Livrables :
     * [delivery-first](https://github.com/pns-si5-soa/box-20-21-team-f/releases/tag/delivery-first) : Première livraison
 
@@ -56,13 +56,13 @@
 ### Syntaxe
 La syntaxe du DSL est la suivante : 
 
-* <kbd>Déclaration d'un input</kbd> :  sensor `@name` pin `@number` 
+* Déclaration d'un input :  &nbsp;&nbsp;<kbd>sensor `@name` pin `@number`</kbd>
 
 
-* <kbd>Déclaration d'un output</kbd> : actuator `@name` pin `@number`
+* Déclaration d'un output : <kbd>actuator `@name` pin `@number`</kbd>
 
 
-* <kbd>Déclaration d'un état</kbd> : state `@name` means `@actuator` becomes `high | low` &nbsp; [`and` `@actuator` becomes `high | low`] * `n`
+* Déclaration d'un état : &nbsp;&nbsp;&nbsp;&nbsp;<kbd>state `@name` means `@actuator` becomes `high | low` &nbsp; [`and` `@actuator` becomes `high | low`] * `n`</kbd>
 
 ## <img src="https://icon-icons.com/icons2/1145/PNG/64/codeoutlinedprogrammingsigns_81143.png"/>  Pile Technologique
   <p align="center">
