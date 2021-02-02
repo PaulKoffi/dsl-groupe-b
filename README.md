@@ -1,13 +1,13 @@
 ## <img src="https://icon-icons.com/icons2/907/PNG/64/group-of-people-in-a-formation_icon-icons.com_70476.png"/>  Dsl-groupe-B
 
 * Auteurs: **Team B**
-    * AINADOU Florian (DSL Externe)
-    * DJEKINOU Paul-Marie (DSL Externe)
-    * KOFFI Paul (DSL Interne)
-    * NABAGOU Djotiham (DSL Interne)
+    * AINADOU Florian (`DSL Externe`)
+    * DJEKINOU Paul-Marie (`DSL Externe`)
+    * KOFFI Paul (`DSL Interne`)
+    * NABAGOU Djotiham (`DSL Interne`)
 * Version actuelle : `Basic scenarios + Signaling stuff by using sound + Temporal transitions` <kbd>+ reset to initial state for temporal transitions</kbd>
 * Livrables :
-    * [delivery-first](https://github.com/pns-si5-soa/box-20-21-team-f/releases/tag/delivery-first) : Première livraison
+    * [first-delivery](https://github.com/pns-si5-soa/box-20-21-team-f/releases/tag/delivery-first) : Première livraison
 
 ## <img src="https://icon-icons.com/icons2/1147/PNG/64/1486486316-arrow-film-movie-play-player-start-video_81236.png"/>  Démos rapide de nos fonctionnalités
 * `Very Simple Alarm` : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 👉 [ici](https://drive.google.com/file/d/19RyqV8oVMZ8SNIQ71oXbLt3mdt5Y3ou1/view?usp=sharing)
@@ -65,13 +65,13 @@ La syntaxe du DSL est la suivante :
 * #### Interrupteur reset à l'état initial pour les transtions temporelles   : <kbd>interrupt on</kbd>
 
 * #### Déclaration d'un état avec tonalité  : 
-<kbd>tune on state `@name` means `@actuator` becomes `high | low` [and `@actuator` becomes `high | low`] * `n`</kbd>
+<kbd>tune on state `@name` means `@actuator` becomes `high | low` [and `@actuator` becomes `high | low`] * n</kbd>
 
 * #### Déclaration d'un état sans tonalité : 
-<kbd>state `@name` means `@actuator` becomes `high | low` [and `@actuator` becomes `high | low`] * `n`
+<kbd>state `@name` means `@actuator` becomes `high | low` [and `@actuator` becomes `high | low`] * n
 </kbd> &nbsp;   &nbsp;
 
-<kbd>tune off state `@name` means `@actuator` becomes `high | low` [and `@actuator` becomes `high | low`] * `n`</kbd>
+<kbd>tune off state `@name` means `@actuator` becomes `high | low` [and `@actuator` becomes `high | low`] * n</kbd>
 
 * #### Etat initial de l'App  : <kbd>initial `@state`</kbd>
 
