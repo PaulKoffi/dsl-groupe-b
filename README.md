@@ -7,7 +7,7 @@
   ### *DSL Interne*
   >  * KOFFI Paul 
   > * NABAGOU Djotiham 
-* Version actuelle : `Basic scenarios + Signaling stuff by using sound + Temporal transitions` <kbd>+ reset to initial state for temporal transitions</kbd>
+* Version actuelle : `**Basic scenarios** + **Signaling stuff by using sound** + **Temporal transitions**` <kbd>+ **reset to initial state for temporal transitions**</kbd>
 * Livrables :
     * [first-delivery](https://github.com/pns-si5-soa/box-20-21-team-f/releases/tag/delivery-first) : Première livraison
 
