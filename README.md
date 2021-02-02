@@ -1,10 +1,12 @@
 ## <img src="https://icon-icons.com/icons2/907/PNG/64/group-of-people-in-a-formation_icon-icons.com_70476.png"/>  Dsl-groupe-B
 
 * Auteurs: **Team B**
-    * AINADOU Florian (`DSL Externe`)
-    * DJEKINOU Paul-Marie (`DSL Externe`)
-    * KOFFI Paul (`DSL Interne`)
-    * NABAGOU Djotiham (`DSL Interne`)
+  ### *DSL Externe*
+  > * AINADOU Florian 
+  > * DJEKINOU Paul-Marie 
+  ### *DSL Interne*
+  >  * KOFFI Paul 
+  > * NABAGOU Djotiham 
 * Version actuelle : `Basic scenarios + Signaling stuff by using sound + Temporal transitions` <kbd>+ reset to initial state for temporal transitions</kbd>
 * Livrables :
     * [first-delivery](https://github.com/pns-si5-soa/box-20-21-team-f/releases/tag/delivery-first) : Première livraison
@@ -60,7 +62,7 @@ La syntaxe du DSL est la suivante :
 
 * #### Déclaration d'un output : <kbd>actuator `@name` pin `@number`</kbd>
 
-* #### Tonalité activé   : <kbd>tonality on</kbd>
+* #### Tonalité activée    : <kbd>tonality on</kbd>
 
 * #### Interrupteur reset à l'état initial pour les transtions temporelles   : <kbd>interrupt on</kbd>
 
