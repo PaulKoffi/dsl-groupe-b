@@ -56,12 +56,12 @@
 ### Syntaxe
 La syntaxe du DSL est la suivante : 
 
-* #### Déclaration d'un input :  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<kbd>sensor `@name` pin `@number`</kbd>
+* #### Déclaration d'un input :  <kbd>sensor `@name` pin `@number`</kbd>
 
 
-* #### Déclaration d'un output : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<kbd>actuator `@name` pin `@number`</kbd>
+* #### Déclaration d'un output : <kbd>actuator `@name` pin `@number`</kbd>
 
-* #### Déclaration d'un état : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<kbd>state `@name` means `@actuator` becomes `high | low` &nbsp; [and `@actuator` becomes `high | low`] * `n`</kbd>
+* #### Déclaration d'un état : <kbd>state `@name` means `@actuator` becomes `high | low` &nbsp; [and `@actuator` becomes `high | low`] * `n`</kbd>
 
 * #### Déclaration d'une transition : <kbd>from `@state` to `@state` when `@sensor` becomes `high | low` [, and | or when `@sensor` becomes `high | low`] </kbd>
 
