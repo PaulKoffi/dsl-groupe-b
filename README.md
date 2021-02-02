@@ -1,10 +1,10 @@
 ## <img src="https://icon-icons.com/icons2/907/PNG/64/group-of-people-in-a-formation_icon-icons.com_70476.png"/>  Dsl-groupe-B
 
 * Auteurs: **Team B**
-    * AINADOU Florian
-    * DJEKINOU Paul-Marie
-    * KOFFI Paul
-    * NABAGOU Djotiham
+    * AINADOU Florian (DSL Externe)
+    * DJEKINOU Paul-Marie (DSL Externe)
+    * KOFFI Paul (DSL Interne)
+    * NABAGOU Djotiham (DSL Interne)
 * Version actuelle : `Basic scenarios + Signaling stuff by using sound + Temporal transitions` <kbd>+ reset to initial state for temporal transitions</kbd>
 * Livrables :
     * [delivery-first](https://github.com/pns-si5-soa/box-20-21-team-f/releases/tag/delivery-first) : Première livraison
