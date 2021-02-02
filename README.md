@@ -58,16 +58,25 @@ La syntaxe du DSL est la suivante :
 
 * #### Déclaration d'un input :  <kbd>sensor `@name` pin `@number`</kbd>
 
-
 * #### Déclaration d'un output : <kbd>actuator `@name` pin `@number`</kbd>
 
-* #### Déclaration d'un état : <kbd>state `@name` means `@actuator` becomes `high | low` &nbsp; [and `@actuator` becomes `high | low`] * `n`</kbd>
+* #### Tonalité activé   : <kbd>tonality on</kbd>
 
-* #### Déclaration d'une transition : <kbd>from `@state` to `@state` when `@sensor` becomes `high | low` [, and | or when `@sensor` becomes `high | low`] </kbd>
+* #### Interrupteur reset à l'état initial pour les transtions temporelles   : <kbd>interrupt on</kbd>
 
-* #### Etat initial de l'App  : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<kbd>initial `@state`</kbd>
+* #### Déclaration d'un état avec tonalité  : <kbd>tune on state `@name` means `@actuator` becomes `high | low` &nbsp; [and `@actuator` becomes `high | low`] * `n`</kbd>
 
-* #### Nom du programme   : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<kbd>export `@name`</kbd>
+* #### Déclaration d'un état sans tonalité : <kbd>state `@name` means `@actuator` becomes `high | low` &nbsp; [and `@actuator` becomes `high | low`] * `n`</kbd> &nbsp; |  &nbsp;<kbd>tune off state `@name` means `@actuator` becomes `high | low` &nbsp; [and `@actuator` becomes `high | low`] * `n`</kbd>
+
+* #### Etat initial de l'App  : <kbd>initial `@state`</kbd>
+
+* #### Déclaration d'une transition simple : <kbd>from `@state` to `@state` when `@sensor` becomes `high | low`</kbd>
+
+* #### Déclaration d'une transition conditionnelle : <kbd>fromC `@state` to `@state` when `@sensor` becomes `high | low` , `and | or` when `@sensor` becomes `high | low` </kbd>
+
+* #### Déclaration d'une transition temporelle : <kbd>from `@state` temporalTo `@state` after `@time` ms </kbd>
+
+* #### Nom du programme   : <kbd>export `@name`</kbd>
 
 
 ## <img src="https://icon-icons.com/icons2/1145/PNG/64/codeoutlinedprogrammingsigns_81143.png"/>  Pile Technologique
