@@ -64,15 +64,21 @@ La syntaxe du DSL est la suivante :
 
 * #### Interrupteur reset à l'état initial pour les transtions temporelles   : <kbd>interrupt on</kbd>
 
-* #### Déclaration d'un état avec tonalité  : <kbd>tune on state `@name` means `@actuator` becomes `high | low` [and `@actuator` becomes `high | low`] * `n`</kbd>
+* #### Déclaration d'un état avec tonalité  : 
+<kbd>tune on state `@name` means `@actuator` becomes `high | low` [and `@actuator` becomes `high | low`] * `n`</kbd>
 
-* #### Déclaration d'un état sans tonalité : <kbd>state `@name` means `@actuator` becomes `high | low` [and `@actuator` becomes `high | low`] * `n`</kbd> &nbsp;   &nbsp;<kbd>tune off state `@name` means `@actuator` becomes `high | low` [and `@actuator` becomes `high | low`] * `n`</kbd>
+* #### Déclaration d'un état sans tonalité : 
+<kbd>state `@name` means `@actuator` becomes `high | low` [and `@actuator` becomes `high | low`] * `n`
+</kbd> &nbsp;   &nbsp;
+
+<kbd>tune off state `@name` means `@actuator` becomes `high | low` [and `@actuator` becomes `high | low`] * `n`</kbd>
 
 * #### Etat initial de l'App  : <kbd>initial `@state`</kbd>
 
 * #### Déclaration d'une transition simple : <kbd>from `@state` to `@state` when `@sensor` becomes `high | low`</kbd>
 
-* #### Déclaration d'une transition conditionnelle : <kbd>fromC `@state` to `@state` when `@sensor` becomes `high | low` , `and | or` when `@sensor` becomes `high | low` </kbd>
+* #### Déclaration d'une transition conditionnelle : 
+<kbd>fromC `@state` to `@state` when `@sensor` becomes `high | low` , `and | or` when `@sensor` becomes `high | low` </kbd>
 
 * #### Déclaration d'une transition temporelle : <kbd>from `@state` temporalTo `@state` after `@time` ms </kbd>
 
