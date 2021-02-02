@@ -64,9 +64,9 @@ La syntaxe du DSL est la suivante :
 
 * #### Interrupteur reset à l'état initial pour les transtions temporelles   : <kbd>interrupt on</kbd>
 
-* #### Déclaration d'un état avec tonalité  : <kbd>tune on state `@name` means `@actuator` becomes `high | low` &nbsp; [and `@actuator` becomes `high | low`] * `n`</kbd>
+* #### Déclaration d'un état avec tonalité  : <kbd>tune on state `@name` means `@actuator` becomes `high | low` [and `@actuator` becomes `high | low`] * `n`</kbd>
 
-* #### Déclaration d'un état sans tonalité : <kbd>state `@name` means `@actuator` becomes `high | low` &nbsp; [and `@actuator` becomes `high | low`] * `n`</kbd> &nbsp; |  &nbsp;<kbd>tune off state `@name` means `@actuator` becomes `high | low` &nbsp; [and `@actuator` becomes `high | low`] * `n`</kbd>
+* #### Déclaration d'un état sans tonalité : <kbd>state `@name` means `@actuator` becomes `high | low` [and `@actuator` becomes `high | low`] * `n`</kbd> &nbsp;   &nbsp;<kbd>tune off state `@name` means `@actuator` becomes `high | low` [and `@actuator` becomes `high | low`] * `n`</kbd>
 
 * #### Etat initial de l'App  : <kbd>initial `@state`</kbd>
 
